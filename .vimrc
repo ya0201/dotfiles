@@ -7,7 +7,18 @@ set autoindent
 set smartindent
 set cursorline
 syntax on
+filetype on
+set backspace=indent,eol,start
 
+nnoremap <silent><C-x> :NERDTreeToggle<CR>
+let NERDTreeWinSize=20
+
+" Nerd_Commenter の基本設定
+let g:NERDCreateDefaultMappings = 0
+let NERDSpaceDelims = 1
+let g:NERDDefaultAlign='left'
+nmap <Leader>/ <Plug>NERDCommenterToggle
+vmap <Leader>/ <Plug>NERDCommenterToggle
 
 let s:vim_plug_url='https://github.com/junegunn/vim-plug'
 if !filereadable(expand('~/.vim/vim-plug/plug.vim'))
@@ -17,5 +28,7 @@ source ~/.vim/vim-plug/plug.vim
 call plug#begin('~/.vim/plugged')
 
   Plug 'scrooloose/nerdtree'
+  Plug 'simeji/winresizer'
+  Plug 'scrooloose/nerdcommenter'
 
 call plug#end()
