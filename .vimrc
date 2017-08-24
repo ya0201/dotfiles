@@ -6,12 +6,13 @@ set softtabstop=2
 set autoindent
 set smartindent
 set cursorline
+set paste
+set backspace=indent,eol,start
 syntax on
 filetype on
-set backspace=indent,eol,start
 
 nnoremap <silent><C-x> :NERDTreeToggle<CR>
-let NERDTreeWinSize=20
+let NERDTreeWinSize=23
 
 " Nerd_Commenter の基本設定
 let g:NERDCreateDefaultMappings = 0
