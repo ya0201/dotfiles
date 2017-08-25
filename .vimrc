@@ -11,16 +11,19 @@ set backspace=indent,eol,start
 syntax on
 filetype on
 
+" NERDTree
 nnoremap <silent><C-x> :NERDTreeToggle<CR>
 let NERDTreeWinSize=23
 
-" Nerd_Commenter の基本設定
+" Nerd_Commenter
 let g:NERDCreateDefaultMappings = 0
 let NERDSpaceDelims = 1
 let g:NERDDefaultAlign='left'
-nmap <Leader>/ <Plug>NERDCommenterToggle
-vmap <Leader>/ <Plug>NERDCommenterToggle
+nmap \\ <Plug>NERDCommenterToggle
+vmap \\ <Plug>NERDCommenterToggle
 
+
+" VimPlug
 let s:vim_plug_url='https://github.com/junegunn/vim-plug'
 if !filereadable(expand('~/.vim/vim-plug/plug.vim'))
   call system("git clone " . s:vim_plug_url . " " . $HOME . "/.vim/vim-plug/")
