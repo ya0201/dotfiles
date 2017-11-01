@@ -12,8 +12,10 @@ autoload -U compinit
 compinit
 
 ### History ###
+HISTSIZE=10000
+SAVEHIST=10000
 # 履歴ファイルの保存先
-export HISTFILE=${HOME}/.zhistory
+HISTFILE=${HOME}/.zsh_history
 # 履歴をインクリメンタルに追加
 setopt inc_append_history
 # インクリメンタルからの検索
