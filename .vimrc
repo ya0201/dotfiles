@@ -34,5 +34,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'scrooloose/nerdtree'
   Plug 'simeji/winresizer'
   Plug 'scrooloose/nerdcommenter'
+  Plug 'stephpy/vim-yaml'
 
 call plug#end()
