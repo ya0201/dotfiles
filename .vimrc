@@ -22,7 +22,7 @@ nnoremap x "_x
 
 " Open *.md as markdown filetype
 autocmd BufRead,BufNewFile *.md set filetype=markdown
-autocmd FileType markdown source ./.vimrc_md
+autocmd FileType markdown source <sfile>:h/.vimrc_md
 
 
 " NERDTree
