@@ -1,3 +1,4 @@
+" set option
 set number
 set expandtab
 set tabstop=2
@@ -6,10 +7,23 @@ set softtabstop=2
 set autoindent
 set smartindent
 set cursorline
-set paste
 set backspace=indent,eol,start
 syntax on
 filetype on
+set hlsearch
+set ruler
+set title
+set wildmenu wildmode=list:full
+
+" key mapping
+noremap <S-h>   ^
+noremap <S-l>   $
+nnoremap x "_x
+
+" Open *.md as markdown filetype
+autocmd BufRead,BufNewFile *.md set filetype=markdown
+autocmd FileType markdown source ./.vimrc_md
+
 
 " NERDTree
 nnoremap <silent><C-x> :NERDTreeToggle<CR>
@@ -30,10 +44,15 @@ if !filereadable(expand('~/.vim/vim-plug/plug.vim'))
 endif
 source ~/.vim/vim-plug/plug.vim
 call plug#begin('~/.vim/plugged')
-
   Plug 'scrooloose/nerdtree'
   Plug 'simeji/winresizer'
   Plug 'scrooloose/nerdcommenter'
   Plug 'stephpy/vim-yaml'
-
+  Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'
 call plug#end()
+
+" Vim Markdown
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_new_list_item_indent = 2
+
+
