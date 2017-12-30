@@ -20,10 +20,12 @@ noremap <S-h>   ^
 noremap <S-l>   $
 nnoremap x "_x
 
-" Open *.md as markdown filetype
+" filetype settings
 autocmd BufRead,BufNewFile *.md set filetype=markdown
-autocmd FileType markdown source <sfile>:h/.vimrc_md
+autocmd BufRead,BufNewFile *.slide set filetype=markdown
 
+" load settings for markdown file
+autocmd FileType markdown source <sfile>:h/.vimrc_md
 
 " NERDTree
 nnoremap <silent><C-x> :NERDTreeToggle<CR>
