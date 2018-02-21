@@ -50,7 +50,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'simeji/winresizer'
   Plug 'scrooloose/nerdcommenter'
   Plug 'stephpy/vim-yaml'
-  Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'
+  Plug 'godlygeek/tabular', {'for': 'markdown'} | Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
+  Plug 'neovimhaskell/haskell-vim', {'for': 'haskell'}
 call plug#end()
 
 " Vim Markdown
