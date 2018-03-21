@@ -52,6 +52,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'stephpy/vim-yaml'
   Plug 'godlygeek/tabular', {'for': 'markdown'} | Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
   Plug 'neovimhaskell/haskell-vim', {'for': 'haskell'}
+  Plug 'justmao945/vim-clang', {'for': 'cpp'}
 call plug#end()
 
 " Vim Markdown
