@@ -58,7 +58,8 @@ autoload -Uz colors
 colors
 
 # 一般ユーザ時
-tmp_prompt="%m:%c %{${fg[cyan]}%}%n$ "
+# tmp_prompt="%m:%c %{${fg[cyan]}%}%n$ "
+tmp_prompt="maiMacBookPro:%c %{${fg[cyan]}%}me$ "
 # rootユーザ時(太字にし、アンダーバーをつける)
 if [ ${UID} -eq 0 ]; then
   tmp_prompt="%B%U${tmp_prompt}%u%b"
@@ -77,4 +78,13 @@ alias v=vim
 # cdコマンド実行後、lsを実行する
 function cd() {
  builtin cd $@ && ls;
+}
+
+# alcで英単語を検索してlynxで見たりするためのコマンド
+function alc() {
+  if [ $# != 0 ]; then
+    lynx -dump -nonumbers "http://eow.alc.co.jp/$*/UTF-8/?ref=sa" | less +33
+  else
+    lynx -dump -nonumbers "http://www.alc.co.jp/"
+  fi
 }
