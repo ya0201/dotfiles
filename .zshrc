@@ -74,6 +74,12 @@ PROMPT=$tmp_prompt
 
 ### Aliases ###
 alias v=vim
+alias ll='ls -l'
+alias la='ls -a'
+alias lla='ls -al'
+alias gcom='gcloud compute'
+alias gci='gcloud compute instances'
+
 
 # cdコマンド実行後、lsを実行する
 function cd() {
