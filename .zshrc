@@ -77,7 +77,11 @@ alias v=vim
 alias ll='ls -l'
 alias la='ls -a'
 alias lla='ls -al'
-alias gcom='gcloud compute'
+alias g=git
+alias gadd='git add'
+alias gcommit='git commit'
+alias gpush='git push'
+alias gcompute='gcloud compute'
 alias gci='gcloud compute instances'
 
 
