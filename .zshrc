@@ -78,6 +78,7 @@ alias ll='ls -l'
 alias la='ls -a'
 alias lla='ls -al'
 alias g=git
+alias gstatus='git status'
 alias gadd='git add'
 alias gcommit='git commit'
 alias gpush='git push'
@@ -96,5 +97,27 @@ function alc() {
     lynx -dump -nonumbers "http://eow.alc.co.jp/$*/UTF-8/?ref=sa" | less +33
   else
     lynx -dump -nonumbers "http://www.alc.co.jp/"
+  fi
+}
+
+# Oxford Learner's Dicで英単語を検索してlynxで見たりする
+function eed() {
+  if [ $# != 0 ]; then
+    baseURL="https://www.oxfordlearnersdictionaries.com/definition/english/"
+    local ORGIFS=$IFS
+    IFS='-'; local QUERY1="$*"; IFS=$ORGIFS
+    IFS='+'; local QUERY2="$*"; IFS=$ORGIFS
+    lynx -dump -nonumbers "${baseURL}${QUERY1}?q=${QUERY2}" | less +25
+  else
+    lynx -dump -nonumbers $baseURL
+  fi
+}
+
+# vim的にテキストサイトを簡単に見る
+function vurl() {
+  if [ $# != 0 ]; then
+    lynx -dump -nonumbers "$*" | less
+  else
+    lynx -dump -nonumbers "http://google.com" | less
   fi
 }

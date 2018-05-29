@@ -27,6 +27,7 @@ nnoremap gk k
 " filetype settings
 autocmd BufRead,BufNewFile *.md set filetype=markdown
 autocmd BufRead,BufNewFile *.slide set filetype=markdown
+autocmd BufRead,BufNewFile *.toml set filetype=toml
 
 " load settings for markdown file
 autocmd FileType markdown source <sfile>:h/.vimrc_md
@@ -45,6 +46,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'godlygeek/tabular', {'for': 'markdown'} | Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
   Plug 'neovimhaskell/haskell-vim', {'for': 'haskell'}
   Plug 'justmao945/vim-clang', {'for': 'cpp'}
+  Plug 'cespare/vim-toml', {'for': 'toml'}
   Plug 'thinca/vim-quickrun'
   Plug 'Shougo/neocomplete'
   Plug 'Shougo/neosnippet'
