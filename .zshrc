@@ -113,6 +113,18 @@ function eed() {
   fi
 }
 
+# Urban Dictionaryで英単語を検索してlynxで見たりする
+function urd() {
+  if [ $# != 0 ]; then
+    baseURL="https://www.urbandictionary.com/define.php?term="
+    local ORGIFS=$IFS
+    IFS='+'; local QUERY="$*"; IFS=$ORGIFS
+    lynx -dump -nonumbers "${baseURL}${QUERY}" | less +40
+  else
+    lynx -dump -nonumbers $baseURL
+  fi
+}
+
 # vim的にテキストサイトを簡単に見る
 function vurl() {
   if [ $# != 0 ]; then
