@@ -16,6 +16,7 @@ execute "source " . s:vim_plug_dir . "plug.vim"
 
 " load plugins
 call plug#begin(s:plugged_dir)
+  Plug 'cocopon/iceberg.vim'
   Plug 'scrooloose/nerdtree'
   Plug 'simeji/winresizer'
   Plug 'scrooloose/nerdcommenter'

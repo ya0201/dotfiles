@@ -1,4 +1,18 @@
-" set option
+" load plugin config
+source <sfile>:h/myplugs.vim
+
+" set colorscheme
+" colorscheme must be set after loading myplugs.vim because iceberg is managed by vim-plug
+colorscheme iceberg
+
+" general option
+syntax on
+filetype on
+language en_US
+if &compatible
+  set nocompatible
+endif
+
 set number
 set expandtab
 set tabstop=2
@@ -6,18 +20,15 @@ set shiftwidth=2
 set softtabstop=2
 set autoindent
 set smartindent
-set cursorline
 set backspace=indent,eol,start
-syntax on
-filetype on
 set hlsearch
 set ruler
 set title
 set wildmenu wildmode=list:full
+set cursorline
+highlight CursorLine term=underline cterm=underline ctermfg=NONE ctermbg=NONE
+highlight CursorLine gui=underline guifg=NONE guibg=NONE
 
-if &compatible
-  set nocompatible
-endif
 
 " key mapping
 noremap <S-h>   ^
@@ -35,6 +46,3 @@ autocmd BufRead,BufNewFile *.toml set filetype=toml
 
 " load settings for markdown file
 autocmd FileType markdown source <sfile>:h/mymarkdown.vim
-
-" load plugin config
-source <sfile>:h/myplugs.vim
