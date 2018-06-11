@@ -1,3 +1,5 @@
+" assumed to be loaded by basic.vim
+
 " directory config for vim/nvim
 if has('nvim')
   let s:vim_plug_dir=expand($XDG_DATA_HOME . '/nvim/vim-plug/')

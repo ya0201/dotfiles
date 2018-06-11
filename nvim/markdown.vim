@@ -1,3 +1,5 @@
+" assumed to be loaded by basic.vim
+
 " Get string from start (of row) to cursor
 function! GetBeforeStr()
   let prev_pos = col('.') - 1

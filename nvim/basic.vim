@@ -1,5 +1,7 @@
+" assumed to be loaded by vimrc/init.vim
+
 " load plugin config
-source <sfile>:h/myplugs.vim
+source <sfile>:h/plugs.vim
 
 " set colorscheme
 " colorscheme must be set after loading myplugs.vim because iceberg is managed by vim-plug
@@ -45,4 +47,4 @@ autocmd BufRead,BufNewFile *.slide set filetype=markdown
 autocmd BufRead,BufNewFile *.toml set filetype=toml
 
 " load settings for markdown file
-autocmd FileType markdown source <sfile>:h/mymarkdown.vim
+autocmd FileType markdown source <sfile>:h/markdown.vim
