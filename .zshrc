@@ -58,8 +58,8 @@ autoload -Uz colors
 colors
 
 # 一般ユーザ時
-# tmp_prompt="%m:%c %{${fg[cyan]}%}%n$ "
-tmp_prompt="maiMacBookPro:%c %{${fg[cyan]}%}me$ "
+tmp_prompt="%m:%c %{${fg[cyan]}%}%n$ "
+# tmp_prompt="maiMacBookPro:%c %{${fg[cyan]}%}me$ "
 # rootユーザ時(太字にし、アンダーバーをつける)
 if [ ${UID} -eq 0 ]; then
   tmp_prompt="%B%U${tmp_prompt}%u%b"
