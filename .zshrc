@@ -133,3 +133,49 @@ function vurl() {
     lynx -dump -nonumbers "http://google.com" | less
   fi
 }
+
+# vimrでmemodir内のmdをnote的に編集したい
+function note() {
+
+  if [ ! -x "`which vimr`" ]; then
+    echo "Error: VimR is not installed."
+    return
+  fi
+  if [ -z "$MEMODIR" ]; then
+    echo 'Error: $MEMODIR is not set.'
+    return
+  fi
+
+  if [ $# -eq 0 ]; then
+    vimr --cwd $MEMODIR
+  else
+    echo "Error: Invalid argument (no argument is required)"
+  fi
+}
+function notee() {
+
+  if [ ! -x "`which vimr`" ]; then
+    echo "Error: VimR is not installed."
+    return
+  fi
+  if [ ! -x "`which peco`" ]; then
+    echo "Error: peco is not installed."
+    return
+  fi
+  if [ -z "$MEMODIR" ]; then
+    echo 'Error: $MEMODIR is not set.'
+    return
+  fi
+
+  if [ $# -eq 0 ]; then
+    selected_file=$(ls $MEMODIR/*.md | peco)
+
+    if [ -z "$selected_file" ]; then
+      echo "notee: No files selected"
+      return
+    fi
+    vimr $selected_file --cwd $MEMODIR
+  else
+    echo "Error: Invalid argument (no argument is required)"
+  fi
+}

@@ -17,9 +17,9 @@ if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then source "$HOME/google
 
 ## Go env
 if [ -x "`which go`" ]; then
-    export GOPATH=$HOME/.go
-    export PATH=$PATH:$GOPATH/bin
-    export PATH=$PATH:/usr/local/opt/go/libexec/bin
+  export GOPATH=$HOME/.go
+  export PATH=$PATH:$GOPATH/bin
+  export PATH=$PATH:/usr/local/opt/go/libexec/bin
 fi
 
 ## pyenv
@@ -36,4 +36,10 @@ if [ -z "$XDG_CONFIG_HOME" ]; then
 fi
 if [ -z "$XDG_DATA_HOME" ]; then
   export XDG_DATA_HOME="$HOME/.local/share"
+fi
+
+# memo dir
+# assumed to be used by memo (memo tool by golang)
+if [ -z "$MEMODIR" ]; then
+  export MEMODIR="${HOME}/GoogleDrive/memo"
 fi
