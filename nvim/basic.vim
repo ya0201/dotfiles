@@ -5,12 +5,12 @@ source <sfile>:h/plugs.vim
 
 " set colorscheme
 " colorscheme must be set after loading myplugs.vim because iceberg is managed by vim-plug
+syntax on
 colorscheme iceberg
 
 " general option
-syntax on
 filetype on
-language en_US
+language en_US.UTF-8
 if &compatible
   set nocompatible
 endif
@@ -41,6 +41,7 @@ nnoremap j gj
 nnoremap k gk
 nnoremap gj j
 nnoremap gk k
+nnoremap Q <Nop>
 
 " filetype settings
 autocmd BufRead,BufNewFile *.md set filetype=markdown

@@ -3,7 +3,10 @@ source ~/.zshrc
 # export ANT_HOME="/usr/local/bin/ant/"
 # export PATH="$PATH:$ANT_HOME/bin"
 
-export PATH="$(brew --prefix)/bin:$(brew --prefix)/sbin:$PATH"
+# homebrew
+if [ -x "`which brew`" ]; then
+  export PATH="$(brew --prefix)/bin:$(brew --prefix)/sbin:$PATH"
+fi
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then source "$HOME/google-cloud-sdk/path.zsh.inc"; fi
@@ -20,9 +23,17 @@ if [ -x "`which go`" ]; then
 fi
 
 ## pyenv
-eval "$(pyenv init -)"
+export PYENV_ROOT="${HOME}/.pyenv"
+if [ -d "${PYENV_ROOT}" ]; then
+    # export PATH=${PYENV_ROOT}/bin:$PATH
+    eval "$(pyenv init -)"
+fi
 
 # XDG Base Directory Specification
 # used by nvim
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_DATA_HOME="$HOME/.local/share"
+if [ -z "$XDG_CONFIG_HOME" ]; then
+  export XDG_CONFIG_HOME="$HOME/.config"
+fi
+if [ -z "$XDG_DATA_HOME" ]; then
+  export XDG_DATA_HOME="$HOME/.local/share"
+fi

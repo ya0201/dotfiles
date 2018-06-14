@@ -31,6 +31,13 @@ call plug#begin(s:plugged_dir)
   Plug 'Shougo/neocomplete'
   Plug 'Shougo/neosnippet'
   Plug 'Shougo/neosnippet-snippets'
+
+  " plugs for nvim
+  if has('nvim')
+    Plug 'rhysd/nyaovim-running-gopher'
+    Plug 'rhysd/nyaovim-popup-tooltip'
+    Plug 'rhysd/nyaovim-markdown-preview'
+  endif
 call plug#end()
 
 
@@ -51,7 +58,7 @@ let g:vim_markdown_new_list_item_indent = 2
 let g:vim_markdown_conceal = 0
 
 " QuickRun
-nnoremap <silent><Space>r :QuickRun -mode n<CR>
+nnoremap <silent><C-\> :QuickRun -mode n<CR>
 nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() : "\<C-c>"
 command! Q echo "No such command. Which do you mean :QuickRun or :q?"
 au FileType qf nnoremap <silent><buffer>q :quit<CR>
@@ -70,9 +77,9 @@ let g:quickrun_config = {
 " neosnippet
 " Plugin key-mappings.
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
+imap <C-'>     <Plug>(neosnippet_expand_or_jump)
+smap <C-'>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-'>     <Plug>(neosnippet_expand_target)
 " SuperTab like snippets behavior.
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
 "imap <expr><TAB>
