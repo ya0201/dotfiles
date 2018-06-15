@@ -135,14 +135,38 @@ function vurl() {
 }
 
 # vimrでmemodir内のmdをnote的に編集したい
-function note() {
-
+function check_vimr_installed() {
   if [ ! -x "`which vimr`" ]; then
     echo "Error: VimR is not installed."
-    return
+    return 1
+  else
+    return 0
   fi
+}
+function check_peco_installed() {
+  if [ ! -x "`which peco`" ]; then
+    echo "Error: peco is not installed."
+    return 1
+  else
+    return 0
+  fi
+}
+function check_memodir_set() {
   if [ -z "$MEMODIR" ]; then
     echo 'Error: $MEMODIR is not set.'
+    return 1
+  else
+    return 0
+  fi
+}
+
+function note() {
+  check_vimr_installed()
+  if [ $? -eq 1 ]; then
+    return
+  fi
+  check_memodir_set()
+  if [ $? -eq 1 ]; then
     return
   fi
 
@@ -152,18 +176,41 @@ function note() {
     echo "Error: Invalid argument (no argument is required)"
   fi
 }
-function notee() {
+function noten() {
+  check_vimr_installed()
+  if [ $? -eq 1 ]; then
+    return
+  fi
+  check_memodir_set()
+  if [ $? -eq 1 ]; then
+    return
+  fi
 
-  if [ ! -x "`which vimr`" ]; then
-    echo "Error: VimR is not installed."
+  if [ $# -eq 1 ]; then
+    filename=$MEMODIR/$(date "+%Y-%m-%d")-note-$1.md
+    if [ ! -f $filename ];then
+      touch $filename
+      echo -e "# note-$1\n\n" >> $filename
+    else
+      # nop
+    fi
+
+    vimr $filename --cwd $MEMODIR
+  else
+    echo "Error: Invalid argument (only one note title is required)"
+  fi
+}
+function notee() {
+  check_vimr_installed()
+  if [ $? -eq 1 ]; then
     return
   fi
-  if [ ! -x "`which peco`" ]; then
-    echo "Error: peco is not installed."
+  check_peco_installed()
+  if [ $? -eq 1 ]; then
     return
   fi
-  if [ -z "$MEMODIR" ]; then
-    echo 'Error: $MEMODIR is not set.'
+  check_memodir_set()
+  if [ $? -eq 1 ]; then
     return
   fi
 
@@ -172,6 +219,32 @@ function notee() {
 
     if [ -z "$selected_file" ]; then
       echo "notee: No files selected"
+      return
+    fi
+    vimr $selected_file --cwd $MEMODIR
+  else
+    echo "Error: Invalid argument (no argument is required)"
+  fi
+}
+function noteea() {
+  check_vimr_installed()
+  if [ $? -eq 1 ]; then
+    return
+  fi
+  check_peco_installed()
+  if [ $? -eq 1 ]; then
+    return
+  fi
+  check_memodir_set()
+  if [ $? -eq 1 ]; then
+    return
+  fi
+
+  if [ $# -eq 0 ]; then
+    selected_file=$(find $MEMODIR | grep .md | sed -e "s;$MEMODIR/;;g" | peco)
+
+    if [ -z "$selected_file" ]; then
+      echo "noteea: No files selected"
       return
     fi
     vimr $selected_file --cwd $MEMODIR
