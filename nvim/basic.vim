@@ -37,10 +37,6 @@ highlight CursorLine gui=underline guifg=NONE guibg=NONE
 noremap <S-h>   ^
 noremap <S-l>   $
 nnoremap x "_x
-nnoremap j gj
-nnoremap k gk
-nnoremap gj j
-nnoremap gk k
 nnoremap Q <Nop>
 
 " filetype settings

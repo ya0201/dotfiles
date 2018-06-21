@@ -78,9 +78,9 @@ alias ll='ls -l'
 alias la='ls -a'
 alias lla='ls -al'
 alias g=git
-alias gstatus='git status'
-alias gadd='git add'
-alias gcommit='git commit'
+alias gs='git status'
+alias ga='git add'
+alias gc='git commit'
 alias gpush='git push'
 alias gcompute='gcloud compute'
 alias gci='gcloud compute instances'
@@ -215,7 +215,7 @@ function notee() {
   fi
 
   if [ $# -eq 0 ]; then
-    selected_file=$(ls $MEMODIR/*.md | peco)
+    selected_file=$(ls $MEMODIR/*.md | peco --query="note ")
 
     if [ -z "$selected_file" ]; then
       echo "notee: No files selected"
@@ -241,7 +241,7 @@ function noteea() {
   fi
 
   if [ $# -eq 0 ]; then
-    selected_file=$(find $MEMODIR | grep .md | sed -e "s;$MEMODIR/;;g" | peco)
+    selected_file=$(find $MEMODIR | grep .md | sed -e "s;$MEMODIR/;;g" | peco --query="note ")
 
     if [ -z "$selected_file" ]; then
       echo "noteea: No files selected"
