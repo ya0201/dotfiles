@@ -39,6 +39,15 @@ noremap <S-l>   $
 nnoremap x "_x
 nnoremap Q <Nop>
 
+" grでvimgrep
+" normalならカーソル下，visualなら選択範囲で検索
+" nnoremap <expr> gr ':vimgrep;\<' . expand('<cword>') . '\>; **/*'
+nnoremap <expr> gr ':vimgrep;' . expand('<cword>') . '; **/*'
+vnoremap gr "vy:vimgrep;<C-r>=substitute(escape(@v,'\/'),"\n",'\\n','g')<CR>; **/*
+
+" open quickfix-window for :vimgrep, :grep, :Ggrep
+autocmd QuickFixCmdPost *grep* cwindow
+
 " filetype settings
 autocmd BufRead,BufNewFile *.md set filetype=markdown
 autocmd BufRead,BufNewFile *.slide set filetype=markdown
