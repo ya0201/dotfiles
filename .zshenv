@@ -4,7 +4,9 @@ source ~/.zshrc
 # export PATH="$PATH:$ANT_HOME/bin"
 
 # homebrew
-if [ -x "`which brew`" ]; then
+# if [ -x "`which brew 2>/dev/null`" ]; then
+which brew >/dev/null 2>&1
+if [ $? -eq 0 ]; then
   export PATH="$(brew --prefix)/bin:$(brew --prefix)/sbin:$PATH"
 fi
 
@@ -16,7 +18,9 @@ if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then source "$HOME/google
 
 
 ## Go env
-if [ -x "`which go`" ]; then
+# if [ -x "`which go 2>/dev/null`" ]; then
+which go >/dev/null 2>&1
+if [ $? -eq 0 ]; then
   export GOPATH=$HOME/.go
   export PATH=$PATH:$GOPATH/bin
   export PATH=$PATH:/usr/local/opt/go/libexec/bin
