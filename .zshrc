@@ -81,7 +81,9 @@ alias g=git
 alias gs='git status'
 alias ga='git add'
 alias gc='git commit'
+alias gcm='git commit -m'
 alias gpush='git push'
+alias gpull='git pull'
 alias gcompute='gcloud compute'
 alias gci='gcloud compute instances'
 alias gssh='gcompute ssh'
@@ -126,7 +128,7 @@ function urd() {
   fi
 }
 
-# vim的にテキストサイトを簡単に見る
+# lynx+lessでテキストサイトを簡単に見る
 function vurl() {
   if [ $# != 0 ]; then
     lynx -dump -nonumbers "$*" | less
