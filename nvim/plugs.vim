@@ -31,6 +31,7 @@ call plug#begin(s:plugged_dir)
   Plug 'Shougo/neocomplete'
   Plug 'Shougo/neosnippet'
   Plug 'Shougo/neosnippet-snippets'
+  Plug 'ya0201/vim-exesound'
 
   " plugs for nvim
   if has('nvim')
@@ -92,3 +93,7 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 if has('conceal')
   set conceallevel=2 concealcursor=niv
 endif
+
+" vim-exesound
+let g:exesound_auto_nt_open = 1
+let g:exesound_auto_focus_on_nt = 1

@@ -84,6 +84,7 @@ alias gc='git commit'
 alias gpush='git push'
 alias gcompute='gcloud compute'
 alias gci='gcloud compute instances'
+alias gssh='gcompute ssh'
 
 
 # cdコマンド実行後、lsを実行する
@@ -252,3 +253,30 @@ function noteea() {
     echo "Error: Invalid argument (no argument is required)"
   fi
 }
+
+function command-peco() {
+  check_peco_installed()
+  if [ $? -eq 1 ]; then
+    return $?
+  fi
+
+  if [ $# -eq 1 ]; then
+    $1 | peco
+  else
+    echo "Usage: command-peco <command>"
+    return 1
+  fi
+}
+
+function lsp() {
+  command-peco ls
+  return $?
+}
+# function lap() {
+#   command-peco "ls -a"
+#   return $?
+# }
+# function llap() {
+#   command-peco "ls -al"
+#   return $?
+# }
