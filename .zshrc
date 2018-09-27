@@ -37,7 +37,7 @@ bindkey "^R" history-incremental-search-backward
 bindkey "^S" history-incremental-search-forward
 
 # バックグラウンドジョブの優先度を下げない
-unsetopt bg_nice
+setopt nobgnice
 
 # ------------------------------
 # Look And Feel Settings
