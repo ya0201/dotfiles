@@ -28,16 +28,23 @@ call plug#begin(s:plugged_dir)
   Plug 'justmao945/vim-clang', {'for': 'cpp'}
   Plug 'cespare/vim-toml', {'for': 'toml'}
   Plug 'thinca/vim-quickrun'
+  Plug 'ya0201/vim-exesound'
   Plug 'Shougo/neosnippet'
   Plug 'Shougo/neosnippet-snippets'
-  Plug 'ya0201/vim-exesound'
 
-  " plugs for nvim
   if has('nvim')
-    Plug 'rhysd/nyaovim-running-gopher'
-    Plug 'rhysd/nyaovim-popup-tooltip'
-    Plug 'rhysd/nyaovim-markdown-preview'
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  else
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
   endif
+
+  Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+
 call plug#end()
 
 
@@ -63,16 +70,16 @@ nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() 
 command! Q echo "No such command. Which do you mean :QuickRun or :q?"
 au FileType qf nnoremap <silent><buffer>q :quit<CR>
 let g:quickrun_config = {
-      \'_' : {
-      \   'outputter/buffer/split' : ':botright 8sp',
-      \   'outputter/error/success' : 'buffer',
-      \   'outputter/error/error'   : 'quickfix',
-      \   "outputter/buffer/into" : '1',
-      \   'outputter/quickfix/errorformat' : '%f:%l,%m in %f on line %l',
-      \   'outputter/buffer/close_on_empty' : 1,
-      \   'outputter' : 'error',
-      \},
-      \}
+  \'_' : {
+  \   'outputter/buffer/split' : ':botright 8sp',
+  \   'outputter/error/success' : 'buffer',
+  \   'outputter/error/error'   : 'quickfix',
+  \   "outputter/buffer/into" : '1',
+  \   'outputter/quickfix/errorformat' : '%f:%l,%m in %f on line %l',
+  \   'outputter/buffer/close_on_empty' : 1,
+  \   'outputter' : 'error',
+  \  },
+  \}
 
 " neosnippet
 " Plugin key-mappings.
@@ -96,3 +103,34 @@ endif
 " vim-exesound
 let g:exesound_auto_nt_open = 1
 let g:exesound_auto_focus_on_nt = 1
+
+" LanguageClient-neovim
+let g:LanguageClient_serverCommands = {}
+if executable('cquery')
+  let g:LanguageClient_serverCommands = {
+    \ 'cpp': ['/usr/local/bin/cquery', 
+    \ '--log-file=/tmp/cq.log', 
+    \ '--init={"cacheDirectory":"/var/cquery/"}']
+    \ }
+endif
+augroup LanguageClient_config
+  autocmd!
+  autocmd User LanguageClientStarted setlocal signcolumn=yes
+  autocmd User LanguageClientStopped setlocal signcolumn=auto
+augroup END
+let g:LanguageClient_autoStart = 1
+command! -nargs=0 LangHover call LanguageClient_textDocument_hover()
+command! -nargs=0 LangDef call LanguageClient_textDocument_definition()
+command! -nargs=0 LangRename call LanguageClient_textDocument_rename()
+command! -nargs=0 LangFormat call LanguageClient_textDocument_formatting()
+
+" deoplete options
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#auto_complete_delay = 0
+let g:deoplete#auto_complete_start_length = 1
+let g:deoplete#enable_camel_case = 0
+let g:deoplete#enable_ignore_case = 0
+let g:deoplete#enable_refresh_always = 0
+let g:deoplete#enable_smart_case = 1
+let g:deoplete#file#enable_buffer_path = 1
+let g:deoplete#max_list = 10000

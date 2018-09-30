@@ -32,6 +32,9 @@ set cursorline
 highlight CursorLine term=underline cterm=underline ctermfg=NONE ctermbg=NONE
 highlight CursorLine gui=underline guifg=NONE guibg=NONE
 
+" Required by LanguageClient-neovim for operations modifying multiple buffers like rename.
+set hidden
+
 
 " key mapping
 noremap <S-h>   ^

@@ -49,4 +49,4 @@ if [ -z "$MEMODIR" ]; then
 fi
 
 # for newer clang
-export PATH="/usr/local/opt/llvm/bin:$PATH"
+# export PATH="/usr/local/opt/llvm/bin:$PATH"
