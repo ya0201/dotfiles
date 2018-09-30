@@ -28,7 +28,6 @@ call plug#begin(s:plugged_dir)
   Plug 'justmao945/vim-clang', {'for': 'cpp'}
   Plug 'cespare/vim-toml', {'for': 'toml'}
   Plug 'thinca/vim-quickrun'
-  Plug 'Shougo/neocomplete'
   Plug 'Shougo/neosnippet'
   Plug 'Shougo/neosnippet-snippets'
   Plug 'ya0201/vim-exesound'

@@ -47,3 +47,6 @@ fi
 if [ -z "$MEMODIR" ]; then
   export MEMODIR="${HOME}/GoogleDrive/memo"
 fi
+
+# for newer clang
+export PATH="/usr/local/opt/llvm/bin:$PATH"
