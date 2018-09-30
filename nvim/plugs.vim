@@ -108,9 +108,12 @@ let g:exesound_auto_focus_on_nt = 1
 let g:LanguageClient_serverCommands = {}
 if executable('cquery')
   let g:LanguageClient_serverCommands = {
+    \ 'c': ['/usr/local/bin/cquery', 
+    \ '--log-file=/tmp/cq.log', 
+    \ '--init={"cacheDirectory":"/var/cache/cquery/"}'],
     \ 'cpp': ['/usr/local/bin/cquery', 
     \ '--log-file=/tmp/cq.log', 
-    \ '--init={"cacheDirectory":"/var/cquery/"}']
+    \ '--init={"cacheDirectory":"/var/cache/cquery/"}']
     \ }
 endif
 augroup LanguageClient_config
