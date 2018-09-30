@@ -34,6 +34,8 @@ highlight CursorLine gui=underline guifg=NONE guibg=NONE
 
 " Required by LanguageClient-neovim for operations modifying multiple buffers like rename.
 set hidden
+" Always draw the signcolumn, required by LC-neovim
+set signcolumn=yes
 
 
 " key mapping
