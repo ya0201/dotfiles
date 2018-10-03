@@ -59,6 +59,10 @@ call plug#end()
 " NERDTree
 nnoremap <silent><C-x> :NERDTreeToggle<CR>
 let NERDTreeWinSize=23
+augroup nerdtree_autoclose
+  autocmd!
+  autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+augroup END
 
 " Nerd_Commenter
 let g:NERDCreateDefaultMappings = 0
@@ -152,7 +156,10 @@ command! -nargs=0 Langformat call LanguageClient_textDocument_formatting()
 " let g:deoplete#sources.cpp = ['LanguageClient']
 
 " ncm2
-autocmd BufEnter * call ncm2#enable_for_buffer()
+augroup ncm2_rc
+  autocmd!
+  autocmd BufEnter * call ncm2#enable_for_buffer()
+augroup END
 set completeopt=noinsert,menuone,noselect
 
 " ncm2-ultisnip
