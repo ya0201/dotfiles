@@ -139,6 +139,7 @@ command! -nargs=0 Langhover call LanguageClient_textDocument_hover()
 command! -nargs=0 Langdef call LanguageClient_textDocument_definition()
 command! -nargs=0 Langrename call LanguageClient_textDocument_rename()
 command! -nargs=0 Langformat call LanguageClient_textDocument_formatting()
+nnoremap <C-]> :Langdef<CR>
 " call deoplete#custom#source('LanguageClient',
 "   \ 'min_pattern_length',
 "   \ 2)
