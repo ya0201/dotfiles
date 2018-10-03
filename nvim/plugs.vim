@@ -134,6 +134,7 @@ augroup LanguageClient_config
   autocmd User LanguageClientStopped setlocal signcolumn=auto
 augroup END
 let g:LanguageClient_autoStart = 1
+let g:LanguageClient_diagnosticsList = "Location"
 command! -nargs=0 Langhover call LanguageClient_textDocument_hover()
 command! -nargs=0 Langdef call LanguageClient_textDocument_definition()
 command! -nargs=0 Langrename call LanguageClient_textDocument_rename()
