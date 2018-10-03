@@ -29,8 +29,8 @@ call plug#begin(s:plugged_dir)
   Plug 'cespare/vim-toml', {'for': 'toml'}
   Plug 'thinca/vim-quickrun'
   Plug 'ya0201/vim-exesound'
-  Plug 'Shougo/neosnippet'
-  Plug 'Shougo/neosnippet-snippets'
+  " Plug 'Shougo/neosnippet'
+  " Plug 'Shougo/neosnippet-snippets'
 
   " if has('nvim')
   "   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -44,6 +44,9 @@ call plug#begin(s:plugged_dir)
 	Plug 'roxma/nvim-yarp'
   " v2 of the nvim-completion-manager.
 	Plug 'ncm2/ncm2'
+  " snippet
+  Plug 'SirVer/ultisnips'
+  Plug 'ncm2/ncm2-ultisnips'
 
   Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
@@ -89,21 +92,21 @@ let g:quickrun_config = {
 " neosnippet
 " Plugin key-mappings.
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-imap <C-\>     <Plug>(neosnippet_expand_or_jump)
-smap <C-\>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-\>     <Plug>(neosnippet_expand_target)
+" imap <C-\>     <Plug>(neosnippet_expand_or_jump)
+" smap <C-\>     <Plug>(neosnippet_expand_or_jump)
+" xmap <C-\>     <Plug>(neosnippet_expand_target)
 " SuperTab like snippets behavior.
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
 "imap <expr><TAB>
 " \ pumvisible() ? "\<C-n>" :
 " \ neosnippet#expandable_or_jumpable() ?
 " \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+" smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 " For conceal markers.
-if has('conceal')
-  set conceallevel=2 concealcursor=niv
-endif
+" if has('conceal')
+"   set conceallevel=2 concealcursor=niv
+" endif
 
 " vim-exesound
 let g:exesound_auto_nt_open = 1
@@ -151,3 +154,15 @@ command! -nargs=0 Langformat call LanguageClient_textDocument_formatting()
 " ncm2
 autocmd BufEnter * call ncm2#enable_for_buffer()
 set completeopt=noinsert,menuone,noselect
+
+" ncm2-ultisnip
+" Press enter key to trigger snippet expansion
+" The parameters are the same as `:help feedkeys()`
+inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", 'n')
+
+" c-j c-k for moving in snippet
+let g:UltiSnipsExpandTrigger    = "<Plug>(ultisnips_expand)"
+" let g:UltiSnipsJumpForwardTrigger = "<c-j>"
+" let g:UltiSnipsJumpBackwardTrigger  = "<c-k>"
+let g:UltiSnipsRemoveSelectModeMappings = 0
+let g:UltiSnipsSnippetDirectories=[$HOME.'/myultisnips']
