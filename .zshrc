@@ -91,6 +91,12 @@ alias gcompute='gcloud compute'
 alias gci='gcloud compute instances'
 alias gssh='gcompute ssh'
 
+# if nvim installed, then replace 'vim' command to 'nvim'
+which nvim >/dev/null 2>&1
+if [ $? -eq 0 ]; then
+  alias vim='nvim'
+fi
+
 
 # cdコマンド実行後、lsを実行する
 function cd() {
