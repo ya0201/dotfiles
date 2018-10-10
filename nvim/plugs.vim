@@ -115,6 +115,7 @@ let g:quickrun_config = {
 " vim-exesound
 let g:exesound_auto_nt_open = 1
 let g:exesound_auto_focus_on_nt = 1
+let g:exesound_py_version = 3
 
 " LanguageClient-neovim
 let g:LanguageClient_serverCommands = {}
