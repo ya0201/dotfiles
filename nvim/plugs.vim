@@ -163,6 +163,10 @@ augroup ncm2_rc
   autocmd BufEnter * call ncm2#enable_for_buffer()
 augroup END
 set completeopt=noinsert,menuone,noselect
+" When the arrow key (up or down) is pressed while the popup menu is visible, 
+" map it to <c-p> or <c-n>.
+inoremap <expr> <Up> (pumvisible() ? "\<c-p>" : "\<Up>")
+inoremap <expr> <Down> (pumvisible() ? "\<c-n>" : "\<Down>")
 
 " ncm2-ultisnip
 " Press enter key to trigger snippet expansion
