@@ -164,6 +164,9 @@ augroup ncm2_rc
   autocmd BufEnter * call ncm2#enable_for_buffer()
 augroup END
 set completeopt=noinsert,menuone,noselect
+" settings to disable auto_popup (can be harmful) and manual popup key
+" let g:ncm2#auto_popup = 0
+" imap <silent><expr> <C-\> "\<Plug>(ncm2_manual_trigger)"
 " When the arrow key (up or down) is pressed while the popup menu is visible, 
 " map it to <c-p> or <c-n>.
 inoremap <expr> <Up> (pumvisible() ? "\<c-p>" : "\<Up>")
