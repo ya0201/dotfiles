@@ -25,20 +25,9 @@ call plug#begin(s:plugged_dir)
   Plug 'stephpy/vim-yaml'
   Plug 'godlygeek/tabular', {'for': 'markdown'} | Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
   Plug 'neovimhaskell/haskell-vim', {'for': 'haskell'}
-  " Plug 'justmao945/vim-clang', {'for': 'cpp'}
   Plug 'cespare/vim-toml', {'for': 'toml'}
   Plug 'thinca/vim-quickrun'
   Plug 'ya0201/vim-exesound'
-  " Plug 'Shougo/neosnippet'
-  " Plug 'Shougo/neosnippet-snippets'
-
-  " if has('nvim')
-  "   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  " else
-  "   Plug 'Shougo/deoplete.nvim'
-  "   Plug 'roxma/nvim-yarp'
-  "   Plug 'roxma/vim-hug-neovim-rpc'
-  " endif
 
   " A dependency of 'ncm2'.
 	Plug 'roxma/nvim-yarp'
@@ -141,22 +130,7 @@ command! -nargs=0 Langdef call LanguageClient_textDocument_definition()
 command! -nargs=0 Langrename call LanguageClient_textDocument_rename()
 command! -nargs=0 Langformat call LanguageClient_textDocument_formatting()
 nnoremap <C-]> :Langdef<CR>
-" call deoplete#custom#source('LanguageClient',
-"   \ 'min_pattern_length',
-"   \ 2)
 
-" deoplete options
-" let g:deoplete#enable_at_startup = 1
-" let g:deoplete#auto_complete_delay = 0
-" let g:deoplete#auto_complete_start_length = 1
-" let g:deoplete#enable_camel_case = 0
-" let g:deoplete#enable_ignore_case = 0
-" let g:deoplete#enable_refresh_always = 0
-" let g:deoplete#enable_smart_case = 1
-" let g:deoplete#file#enable_buffer_path = 1
-" let g:deoplete#max_list = 10000
-" let g:deoplete#sources = {}
-" let g:deoplete#sources.cpp = ['LanguageClient']
 
 " ncm2
 augroup ncm2_rc
