@@ -36,6 +36,7 @@ call plug#begin(s:plugged_dir)
   " snippet
   Plug 'SirVer/ultisnips'
   Plug 'ncm2/ncm2-ultisnips'
+  Plug 'honza/vim-snippets'
 
   Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
@@ -156,4 +157,4 @@ let g:UltiSnipsExpandTrigger    = "<Plug>(ultisnips_expand)"
 " let g:UltiSnipsJumpForwardTrigger = "<c-j>"
 " let g:UltiSnipsJumpBackwardTrigger  = "<c-k>"
 let g:UltiSnipsRemoveSelectModeMappings = 0
-let g:UltiSnipsSnippetDirectories=[$HOME.'/myultisnips']
+let g:UltiSnipsSnippetDirectories=[$HOME.'/myultisnips', $XDG_DATA_HOME.'/nvim/plugged/vim-snippets/UltiSnips']
