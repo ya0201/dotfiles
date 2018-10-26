@@ -110,7 +110,7 @@ let g:exesound_py_version = 3
 " LanguageClient-neovim
 let g:LanguageClient_serverCommands = {}
 if executable('cquery')
-  let b:cq_path = system('which cquery')
+  let b:cq_path = Chomp(system('which cquery'))
   let g:LanguageClient_serverCommands['c'] = [
     \ b:cq_path, 
     \ '--log-file=/tmp/cq.log', 

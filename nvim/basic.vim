@@ -1,5 +1,10 @@
 " assumed to be loaded by vimrc/init.vim
 
+" function to delete \n at the end of string
+function! Chomp(string)
+  return substitute(a:string, '\n\+$', '', '')
+endfunction
+
 " load plugin config
 source <sfile>:h/plugs.vim
 
