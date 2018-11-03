@@ -111,17 +111,16 @@ let g:exesound_py_version = 3
 " LanguageClient-neovim
 let g:LanguageClient_serverCommands = {}
 if executable('cquery')
-  let b:cq_path = Chomp(system('which cquery'))
   let b:cq_cache_path = expand($XDG_CACHE_HOME . '/cquery')
   if !isdirectory(b:cq_cache_path)
     call mkdir(b:cq_cache_path, 'p')
   endif
   let g:LanguageClient_serverCommands['c'] = [
-    \ b:cq_path, 
+    \ 'cquery', 
     \ '--log-file=/tmp/cq.log', 
     \ '--init={"cacheDirectory":"' . b:cq_cache_path . '"}']
   let g:LanguageClient_serverCommands['cpp'] = [
-    \ b:cq_path, 
+    \ 'cquery', 
     \ '--log-file=/tmp/cq.log', 
     \ '--init={"cacheDirectory":"' . b:cq_cache_path . '"}']
 endif
