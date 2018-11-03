@@ -33,6 +33,12 @@ if [ -d "${PYENV_ROOT}" ]; then
     eval "$(pyenv init -)"
 fi
 
+## rust env
+export CARGO_ROOT="${HOME}/.cargo"
+if [ -d "${CARGO_ROOT}" ]; then
+    export PATH=${CARGO_ROOT}/bin:$PATH
+fi
+
 # XDG Base Directory Specification
 # used by nvim
 if [ -z "$XDG_CONFIG_HOME" ]; then
