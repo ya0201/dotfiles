@@ -28,6 +28,7 @@ call plug#begin(s:plugged_dir)
   Plug 'cespare/vim-toml', {'for': 'toml'}
   Plug 'thinca/vim-quickrun'
   Plug 'ya0201/vim-exesound'
+  Plug 'rust-lang/rust.vim'
 
   " A dependency of 'ncm2'.
 	Plug 'roxma/nvim-yarp'
@@ -124,6 +125,9 @@ if executable('cquery')
     \ '--log-file=/tmp/cq.log', 
     \ '--init={"cacheDirectory":"' . b:cq_cache_path . '"}']
 endif
+if executable('rls')
+  let g:LanguageClient_serverCommands['rust'] = ['rls'] 
+endif
 augroup LanguageClient_config
   autocmd!
   autocmd User LanguageClientStarted setlocal signcolumn=yes
@@ -163,3 +167,6 @@ let g:UltiSnipsExpandTrigger    = "<Plug>(ultisnips_expand)"
 " let g:UltiSnipsJumpBackwardTrigger  = "<c-k>"
 let g:UltiSnipsRemoveSelectModeMappings = 0
 let g:UltiSnipsSnippetDirectories=[$HOME.'/myultisnips', $XDG_DATA_HOME.'/nvim/plugged/vim-snippets/UltiSnips']
+
+" rust.vim
+let g:rustfmt_autosave = 1
