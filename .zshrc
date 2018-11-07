@@ -61,8 +61,8 @@ autoload -Uz colors
 colors
 
 # 一般ユーザ時
-tmp_prompt="%{${fg[green]}%}%n:%{${fg[cyan]}%}%~%{${reset_color}%} [%m]
-%{${fg[cyan]}%}$ %{${reset_color}%}"
+tmp_prompt="%{${fg[green]}%}[%n@%m] %{${fg[cyan]}%}%~
+$ %{${reset_color}%}"
 # tmp_prompt="%{${fg[cyan]}%}[%n@%m] $ %{${reset_color}%}"
 # tmp_prompt="%m:%c %{${fg[cyan]}%}%n$ "
 # tmp_prompt="maiMacBookPro:%c %{${fg[cyan]}%}me$ "
