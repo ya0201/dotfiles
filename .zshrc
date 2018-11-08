@@ -61,18 +61,18 @@ autoload -Uz colors
 colors
 
 # 一般ユーザ時
-tmp_prompt="%{${fg[green]}%}[%n@%m] %{${fg[cyan]}%}%~
-$ %{${reset_color}%}"
+top_left="%{${fg[green]}%}[%m:%~]"
+bottom_left="%{${fg[cyan]}%}%n $ %{${reset_color}%}"
 # tmp_prompt="%{${fg[cyan]}%}[%n@%m] $ %{${reset_color}%}"
 # tmp_prompt="%m:%c %{${fg[cyan]}%}%n$ "
 # tmp_prompt="maiMacBookPro:%c %{${fg[cyan]}%}me$ "
 # rootユーザ時(太字にし、アンダーバーをつける)
 if [ ${UID} -eq 0 ]; then
-  tmp_prompt="%B%U${tmp_prompt}%u%b"
+  bottom_left="%B%U${bottom_left}%u%b"
 fi
 # prompt
-PROMPT=$tmp_prompt
-# RPROMPT="%{${fg[cyan]}%}[%c]"
+PROMPT="$top_left
+$bottom_left"
 
 # right-prompt shows git information
 autoload -Uz vcs_info
