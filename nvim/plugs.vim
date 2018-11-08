@@ -127,6 +127,9 @@ endif
 if executable('rls')
   let g:LanguageClient_serverCommands['rust'] = ['rls'] 
 endif
+if executable('pyls')
+  let g:LanguageClient_serverCommands['python'] = ['pyls'] 
+endif
 augroup LanguageClient_config
   autocmd!
   autocmd User LanguageClientStarted setlocal signcolumn=yes
