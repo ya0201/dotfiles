@@ -15,11 +15,11 @@ if v:version >= 800
   let colors = getcompletion('', 'color')
   if match(colors, 'iceberg') >= 0
     colorscheme iceberg
-  elseif match(colors, 'evening') >= 0
-    colorscheme evening
+  else
+    colorscheme elflord
   endif
 else
-  colorscheme evening
+  colorscheme elflord
 endif
 
 " general option
