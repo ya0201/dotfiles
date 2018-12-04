@@ -11,7 +11,12 @@ source <sfile>:h/plugs.vim
 " set colorscheme
 " colorscheme must be set after loading myplugs.vim because iceberg is managed by vim-plug
 syntax on
-colorscheme iceberg
+let colors = getcompletion('', 'color')
+if match(colors, 'iceberg') >= 0
+  colorscheme iceberg
+elseif match(colors, 'evening') >= 0
+  colorscheme evening
+endif
 
 " general option
 filetype on
