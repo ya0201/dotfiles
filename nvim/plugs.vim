@@ -73,16 +73,22 @@ nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() 
 command! Q echo "No such command. Which do you mean :QuickRun or :q?"
 au FileType qf nnoremap <silent><buffer>q :quit<CR>
 let g:quickrun_config = {
-  \'_' : {
-  \   'outputter/buffer/split' : ':botright 8sp',
-  \   'outputter/error/success' : 'buffer',
-  \   'outputter/error/error'   : 'quickfix',
-  \   "outputter/buffer/into" : '1',
-  \   'outputter/quickfix/errorformat' : '%f:%l,%m in %f on line %l',
-  \   'outputter/buffer/close_on_empty' : 1,
-  \   'outputter' : 'error',
-  \  },
-  \}
+\ '_': {
+\  'outputter/buffer/split' : ':botright 8sp',
+\  'outputter/error/success' : 'buffer',
+\  'outputter/error/error'   : 'quickfix',
+\  'outputter/buffer/into' : '1',
+\  'outputter/quickfix/errorformat' : '%f:%l,%m in %f on line %l',
+\  'outputter/buffer/close_on_empty' : 1,
+\  'outputter' : 'error',
+\ },
+\}
+let g:quickrun_config = {
+\ 'tex': {
+\   'command': 'latexmk',
+\   'exec': ['%c', 'latexmk -c %s:r', 'open %s:r.pdf']
+\ },
+\}
 
 " neosnippet
 " Plugin key-mappings.
