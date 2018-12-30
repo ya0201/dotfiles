@@ -309,3 +309,11 @@ function lsp() {
 #   command-peco "ls -al"
 #   return $?
 # }
+
+function sss() {
+  if [ $# -eq 1 ]; then
+    ssh sakura$1 -t zsh
+  else
+    echo "Error: Invalid argument (only number of sakura is required)"
+  fi
+}
