@@ -29,6 +29,7 @@ call plug#begin(s:plugged_dir)
   Plug 'thinca/vim-quickrun'
   Plug 'ya0201/vim-exesound'
   Plug 'rust-lang/rust.vim'
+  Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 
   " A dependency of 'ncm2'.
 	Plug 'roxma/nvim-yarp'
@@ -81,13 +82,23 @@ let g:quickrun_config = {
 \  'outputter/quickfix/errorformat' : '%f:%l,%m in %f on line %l',
 \  'outputter/buffer/close_on_empty' : 1,
 \  'outputter' : 'error',
+\  'runner' : 'vimproc',
 \ },
 \ 'tex': {
 \  'command': 'latexmk',
 \  'outputter/error/success' : 'null',
-\  'exec': ['%c', 'latexmk -c %s:r', 'open -ga Skim %s:r.pdf']
+\  'exec': '%c',
+\ },
+\ 'mylatexmk': {
+\  'command': 'latexmk',
+\  'outputter/error/success' : 'null',
+\  'exec': '%c; %c -c %s:r; open -ga Skim %s:r.pdf'
 \ },
 \}
+augroup quickrun_tex
+  autocmd!
+  autocmd BufWritePost *.tex :QuickRun mylatexmk
+augroup END
 
 " neosnippet
 " Plugin key-mappings.
