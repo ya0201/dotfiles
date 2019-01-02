@@ -85,7 +85,7 @@ let g:quickrun_config = {
 \ 'tex': {
 \  'command': 'latexmk',
 \  'outputter/error/success' : 'null',
-\  'exec': ['%c', 'latexmk -c %s:r', 'open %s:r.pdf']
+\  'exec': ['%c', 'latexmk -c %s:r', 'open -ga Skim %s:r.pdf']
 \ },
 \}
 
