@@ -82,6 +82,7 @@ let g:quickrun_config = {
 \  'outputter/buffer/close_on_empty' : 1,
 \  'outputter' : 'error',
 \  'runner' : 'vimproc',
+\  'runner/vimproc/updatetime' : 60,
 \ },
 \ 'tex': {
 \  'command': 'latexmk',
@@ -90,13 +91,19 @@ let g:quickrun_config = {
 \ },
 \ 'mylatexmk': {
 \  'command': 'latexmk',
+\  'exec': '%c; open -ga Skim %s:r.pdf',
+\ },
+\ 'mylatexmkc': {
+\  'command': 'latexmk',
 \  'outputter/error/success' : 'null',
-\  'exec': '%c; %c -c %s:r; open -ga Skim %s:r.pdf'
+\  'exec': '%c -c %s:r',
+\  'runner' : 'system',
 \ },
 \}
 augroup quickrun_tex
   autocmd!
   autocmd BufWritePost *.tex :QuickRun mylatexmk
+  autocmd BufWinLeave *.tex :QuickRun mylatexmkc
 augroup END
 
 " neosnippet
