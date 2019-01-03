@@ -78,7 +78,6 @@ let g:quickrun_config = {
 \  'outputter/buffer/split' : ':botright 8sp',
 \  'outputter/error/success' : 'buffer',
 \  'outputter/error/error'   : 'quickfix',
-\  'outputter/buffer/into' : '1',
 \  'outputter/quickfix/errorformat' : '%f:%l,%m in %f on line %l',
 \  'outputter/buffer/close_on_empty' : 1,
 \  'outputter' : 'error',
