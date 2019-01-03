@@ -71,6 +71,7 @@ let g:vim_markdown_conceal = 0
 " QuickRun
 nnoremap qr :QuickRun -mode n<CR>
 nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() : "\<C-c>"
+nnoremap <C-q> :<C-u>bw! \[quickrun\ output\]<CR>
 command! Q echo "No such command. Which do you mean :QuickRun or :q?"
 au FileType qf nnoremap <silent><buffer>q :quit<CR>
 let g:quickrun_config = {
