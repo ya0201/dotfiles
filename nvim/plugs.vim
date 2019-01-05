@@ -101,10 +101,23 @@ let g:quickrun_config = {
 \  'runner' : 'system',
 \ },
 \}
+function! s:mylatexmk()
+  if getcwd() == expand("%:p:h")
+    " echo 'mylatexmk'
+    QuickRun mylatexmk
+  endif
+endfunction
+function! s:mylatexmkc()
+  if getcwd() == expand("%:p:h")
+    " echo 'mylatexmkc'
+    QuickRun mylatexmkc
+  endif
+endfunction
+
 augroup quickrun_tex
   autocmd!
-  autocmd BufWritePost *.tex :QuickRun mylatexmk
-  autocmd BufWinLeave *.tex :QuickRun mylatexmkc
+  autocmd BufWritePost *.tex :call s:mylatexmk()
+  autocmd BufWinLeave *.tex :call s:mylatexmkc()
 augroup END
 
 " neosnippet
