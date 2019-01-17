@@ -92,7 +92,7 @@ let g:quickrun_config = {
 \ },
 \ 'mylatexmk': {
 \  'command': 'latexmk',
-\  'exec': '%c; open -ga Skim %s:r.pdf',
+\  'exec': '%c %s:r; open -ga Skim %s:r.pdf',
 \ },
 \ 'mylatexmkc': {
 \  'command': 'latexmk',
