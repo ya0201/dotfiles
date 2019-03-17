@@ -1,0 +1,10 @@
+# memodir = "/Users/aisaka/GoogleDrive/memo"
+memodir = "${MEMODIR}"
+editor = "nvim"
+column = 20
+selectcmd = "peco"
+grepcmd = "grep -nH ${PATTERN} ${FILES}"
+assetsdir = "."
+pluginsdir = "/Users/aisaka/.config/memo/plugins"
+templatedirfile = ""
+templatebodyfile = ""
