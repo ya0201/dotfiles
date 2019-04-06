@@ -6,6 +6,7 @@ brew 'mas'
 
 # cask
 cask 'google-backup-and-sync'
+cask 'Contexts'
 
 # mas kakin
 mas 'Magnet', id: 441258766

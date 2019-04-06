@@ -16,3 +16,5 @@ source deploy_dotfiles.sh
 pip3 install neovim
 vim -c PlugInstall -c qa
 
+# dir for google drive
+mkdir ~/GoogleDrive

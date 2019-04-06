@@ -6,9 +6,9 @@ echo "Deploying dotfiles ..."
 for f in * .*; do
   [ "$f" = "." ] && continue
   [ "$f" = ".." ] && continue
-  [ "$f" = "README.md" ] && continue
   [ "$f" = ".git" ] && continue
   [ "$f" = ".gitignore" ] && continue
+  [[ $f = *.md ]] && continue
   [[ $f = *.sh ]] && continue
 
   if [ -e $HOME/$f ]; then

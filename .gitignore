@@ -3,3 +3,6 @@
 .gitignore~
 ..gitignore.un~
 .DS_Store
+.config/karabiner/automatic_backups/*
+.ssh/*
+!.ssh/config
