@@ -1,0 +1,11 @@
+cask_args appdir: '/Applications'
+
+# brew
+brew 'peco'
+brew 'mas'
+
+# cask
+cask 'google-backup-and-sync'
+
+# mas kakin
+mas 'Magnet', id: 441258766

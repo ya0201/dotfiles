@@ -1,0 +1,15 @@
+cask_args appdir: '/Applications'
+
+# brew
+brew 'curl'
+brew 'git'
+brew "neovim"
+brew "zsh"
+brew "zsh-completions"
+brew "python3"
+
+# cask
+cask "iterm2"
+cask 'google-chrome'
+cask 'google-japanese-ime'
+cask 'karabiner-elements'
