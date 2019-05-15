@@ -4,5 +4,6 @@
 ..gitignore.un~
 .DS_Store
 .config/karabiner/automatic_backups/*
+.config/karabiner/assets/*
 .ssh/*
 !.ssh/config

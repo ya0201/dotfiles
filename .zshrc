@@ -54,6 +54,9 @@ export ZLS_COLORS=$LS_COLORS
 export CLICOLOR=true
 # 補完候補に色を付ける
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+# ファイル名等の補完において大文字/小文字の区別をつけない
+# ref: https://ozuma.hatenablog.jp/entry/20141219/1418915137
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
 ### Prompt ###
 # basic prompt color setting
@@ -92,6 +95,7 @@ RPROMPT='${vcs_info_msg_0_}'
 
 ### Aliases ###
 alias v=vim
+alias vizr='vim ~/.zshrc'
 alias ll='ls -l'
 alias la='ls -a'
 alias lla='ls -al'
