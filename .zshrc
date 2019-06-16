@@ -16,12 +16,6 @@ HISTSIZE=10000
 SAVEHIST=10000
 # 履歴ファイルの保存先
 HISTFILE=${HOME}/.zsh_history
-# 履歴をインクリメンタルに追加
-setopt inc_append_history
-# インクリメンタルからの検索
-bindkey "^R" history-incremental-search-backward
-bindkey "^S" history-incremental-search-forward
-
 # 余分な空白は詰めて記録
 setopt hist_reduce_blanks  
 # 古いコマンドと同じものは無視 
@@ -38,6 +32,8 @@ bindkey "^S" history-incremental-search-forward
 
 # バックグラウンドジョブの優先度を下げない
 setopt nobgnice
+# !bなどをコマンド履歴に展開しない
+setopt nobanghist
 
 # ------------------------------
 # Look And Feel Settings
@@ -64,7 +60,7 @@ autoload -Uz colors
 colors
 
 # 一般ユーザ時
-top_left="%{${fg[green]}%}[%m:%~]"
+top_left="%{${fg[green]}%}[%M:%~]"
 bottom_left="%{${fg[cyan]}%}%n $ %{${reset_color}%}"
 # tmp_prompt="%{${fg[cyan]}%}[%n@%m] $ %{${reset_color}%}"
 # tmp_prompt="%m:%c %{${fg[cyan]}%}%n$ "
@@ -194,6 +190,9 @@ function check_memodir_set() {
     return 0
   fi
 }
+function check_is_installed() {
+  which $@ >/dev/null 2>&1
+}
 
 function note() {
   check_vimr_installed()
@@ -315,10 +314,33 @@ function lsp() {
 #   return $?
 # }
 
-function sss() {
-  if [ $# -eq 1 ]; then
-    ssh sakura$1 -t zsh
-  else
-    echo "Error: Invalid argument (only number of sakura is required)"
-  fi
-}
+# z wo peco tte bakusoku cd
+# ref: https://qiita.com/maxmellon/items/23325c22581e9187639e
+check_is_installed brew
+if [ $? -eq 0 ]; then
+  local z_dot_sh_path=$(brew --prefix)/etc/profile.d/z.sh
+  [ ! -f $z_dot_sh_path ] && return 0
+
+  # load z
+  . $z_dot_sh_path
+
+  # search function definition
+  function peco-z-search {
+    check_is_installed peco z
+    if [ $? -ne 0 ]; then
+      echo "Please install peco and z"
+      return 1
+    fi
+    local res=$(z | sort -rn | cut -c 12- | peco)
+    if [ -n "$res" ]; then
+      BUFFER+="cd $res"
+      zle accept-line
+    else
+      return 1
+    fi
+  }
+
+  # map search function to Ctrl-f
+  zle -N peco-z-search
+  bindkey '^f' peco-z-search
+fi

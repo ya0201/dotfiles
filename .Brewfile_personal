@@ -1,10 +1,12 @@
 cask_args appdir: '/Applications'
 
 # brew
+brew 'z'
 brew 'peco'
 brew 'mas'
 
 # cask
+cask 'google-chrome'
 cask 'google-backup-and-sync'
 cask 'Contexts'
 
