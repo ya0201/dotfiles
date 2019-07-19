@@ -166,22 +166,6 @@ function vurl() {
 }
 
 # vimrでmemodir内のmdをnote的に編集したい
-function check_vimr_installed() {
-  if [ ! -x "`which vimr`" ]; then
-    echo "Error: VimR is not installed."
-    return 1
-  else
-    return 0
-  fi
-}
-function check_peco_installed() {
-  if [ ! -x "`which peco`" ]; then
-    echo "Error: peco is not installed."
-    return 1
-  else
-    return 0
-  fi
-}
 function check_memodir_set() {
   if [ -z "$MEMODIR" ]; then
     echo 'Error: $MEMODIR is not set.'
@@ -195,7 +179,7 @@ function check_is_installed() {
 }
 
 function note() {
-  check_vimr_installed()
+  check_is_installed vimr
   if [ $? -eq 1 ]; then
     return
   fi
@@ -211,7 +195,7 @@ function note() {
   fi
 }
 function noten() {
-  check_vimr_installed()
+  check_is_installed vimr
   if [ $? -eq 1 ]; then
     return
   fi
@@ -235,11 +219,7 @@ function noten() {
   fi
 }
 function notee() {
-  check_vimr_installed()
-  if [ $? -eq 1 ]; then
-    return
-  fi
-  check_peco_installed()
+  check_is_installed vimr peco
   if [ $? -eq 1 ]; then
     return
   fi
@@ -261,11 +241,8 @@ function notee() {
   fi
 }
 function noteea() {
-  check_vimr_installed()
-  if [ $? -eq 1 ]; then
-    return
-  fi
-  check_peco_installed()
+  check_is_installed vimr peco
+  # check_vimr_installed()
   if [ $? -eq 1 ]; then
     return
   fi
@@ -288,31 +265,30 @@ function noteea() {
 }
 
 function command-peco() {
-  check_peco_installed()
+  check_is_installed peco
   if [ $? -eq 1 ]; then
     return $?
   fi
 
-  if [ $# -eq 1 ]; then
-    $1 | peco
-  else
-    echo "Usage: command-peco <command>"
-    return 1
-  fi
+  eval $@ | peco
 }
 
 function lsp() {
   command-peco ls
   return $?
 }
-# function lap() {
-#   command-peco "ls -a"
-#   return $?
-# }
-# function llap() {
-#   command-peco "ls -al"
-#   return $?
-# }
+function lap() {
+  command-peco 'ls -a'
+  return $?
+}
+function llap() {
+  command-peco 'ls -al'
+  return $?
+}
+function fip() {
+  command-peco 'find .'
+  return $?
+}
 
 # z wo peco tte bakusoku cd
 # ref: https://qiita.com/maxmellon/items/23325c22581e9187639e
