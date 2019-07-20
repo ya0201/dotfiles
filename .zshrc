@@ -320,3 +320,22 @@ if [ $? -eq 0 ]; then
   zle -N peco-z-search
   bindkey '^f' peco-z-search
 fi
+
+# vim with aimai search
+check_is_installed vim peco
+if [ $? -eq 0 ]; then
+  function vim-peco-edit {
+    local selected=$(fip)
+    # [ -n "$selected" ] && vim $selected || echo "vim-peco-edit: No files selected.";
+    if [ -n "$selected" ]; then
+      vim $selected
+    else
+      echo "vim-peco-edit: No files selected."
+      return 1
+    fi
+  }
+
+  # map vim-peco-edit to Ctrl-v
+  zle -N vim-peco-edit
+  bindkey '^v' vim-peco-edit
+fi
