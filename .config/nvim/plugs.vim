@@ -166,6 +166,9 @@ endif
 if executable('pyls')
   let g:LanguageClient_serverCommands['python'] = ['pyls'] 
 endif
+if executable('gopls')
+  let g:LanguageClient_serverCommands['go'] = ['gopls']
+endif
 augroup LanguageClient_config
   autocmd!
   autocmd User LanguageClientStarted setlocal signcolumn=yes
