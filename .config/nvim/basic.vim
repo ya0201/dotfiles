@@ -59,6 +59,9 @@ noremap <S-h>   ^
 noremap <S-l>   $
 nnoremap x "_x
 nnoremap Q <Nop>
+" https://postd.cc/how-to-boost-your-vim-productivity/
+nnoremap <Space>w :w<CR>
+nnoremap <Space>q :q<CR>
 
 " grでvimgrep
 " normalならカーソル下，visualなら選択範囲で検索
