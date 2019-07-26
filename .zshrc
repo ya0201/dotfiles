@@ -5,6 +5,12 @@
 
 # ビープ音を鳴らさないようにする
 setopt no_beep
+# nonomatch
+setopt nonomatch
+# ctrl+s, ctrl+qを開放する
+setopt no_flow_control
+# どっかからコピペしてきたため$ $ lsなどとなっても実行できるようにする
+function $ { $@ }
 
 ### Complement ###  
 # basic complement setting

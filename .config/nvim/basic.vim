@@ -43,6 +43,8 @@ set title
 set wildmenu wildmode=list:full
 set belloff=all
 set cursorline
+" beautiful substitute
+set inccommand=split
 highlight CursorLine term=underline cterm=underline ctermfg=NONE ctermbg=NONE
 highlight CursorLine gui=underline guifg=NONE guibg=NONE
 
