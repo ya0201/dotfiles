@@ -14,8 +14,8 @@ function $ { $@ }
 
 ### Complement ###  
 # basic complement setting
-autoload -U compinit
-compinit
+# autoload -U compinit
+# compinit
 
 ### History ###
 HISTSIZE=10000
