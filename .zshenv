@@ -59,3 +59,10 @@ fi
 
 # for newer clang
 # export PATH="/usr/local/opt/llvm/bin:$PATH"
+
+# zplug
+local zh=/usr/local/opt/zplug
+if [[ -d $zh ]]; then
+  export ZPLUG_HOME=$zh
+  source $ZPLUG_HOME/init.zsh
+fi

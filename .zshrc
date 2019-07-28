@@ -296,13 +296,30 @@ function fip() {
   return $?
 }
 
+# zplug
+check_is_installed zplug
+if [[ $? -eq 0 ]]; then
+  zplug "zsh-users/zsh-syntax-highlighting"
+  zplug "rupa/z"
+
+  # Install packages that have not been installed yet
+  if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    else
+        echo
+    fi
+  fi
+
+  zplug load --verbose
+fi
+
 # z wo peco tte bakusoku cd
 # ref: https://qiita.com/maxmellon/items/23325c22581e9187639e
+local z_dot_sh_path=$ZPLUG_REPOS/rupa/z/z.sh
 check_is_installed brew
-if [ $? -eq 0 ]; then
-  local z_dot_sh_path=$(brew --prefix)/etc/profile.d/z.sh
-  [ ! -f $z_dot_sh_path ] && return 0
-
+if [[ $? -eq 0 && -f $z_dot_sh_path ]]; then
   # load z
   . $z_dot_sh_path
 
@@ -332,9 +349,9 @@ check_is_installed vim peco
 if [ $? -eq 0 ]; then
   function vim-peco-edit {
     local selected=$(fip)
-    # [ -n "$selected" ] && vim $selected || echo "vim-peco-edit: No files selected.";
     if [ -n "$selected" ]; then
-      vim $selected
+      BUFFER+="vim $selected"
+      zle accept-line
     else
       return 1
     fi

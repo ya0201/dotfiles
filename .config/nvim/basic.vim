@@ -45,6 +45,7 @@ set belloff=all
 set cursorline
 " beautiful substitute
 set inccommand=split
+set clipboard+=unnamed
 highlight CursorLine term=underline cterm=underline ctermfg=NONE ctermbg=NONE
 highlight CursorLine gui=underline guifg=NONE guibg=NONE
 
