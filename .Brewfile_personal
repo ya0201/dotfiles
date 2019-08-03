@@ -1,7 +1,6 @@
 cask_args appdir: '/Applications'
 
 # brew
-brew 'zplug'
 brew 'peco'
 brew 'mas'
 
