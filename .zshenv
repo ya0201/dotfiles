@@ -1,5 +1,4 @@
 source /etc/profile
-source ~/.zshrc
 # export ANT_HOME="/usr/local/bin/ant/"
 # export PATH="$PATH:$ANT_HOME/bin"
 
@@ -36,11 +35,10 @@ fi
 ## rust env
 export CARGO_ROOT="${HOME}/.cargo"
 if [ -d "${CARGO_ROOT}" ]; then
-    export PATH=${CARGO_ROOT}/bin:$PATH
+  export PATH=${CARGO_ROOT}/bin:$PATH
 fi
 
-# XDG Base Directory Specification
-# used by nvim
+# XDG Base Directory Specification and file-hierarchy(7)
 if [ -z "$XDG_CONFIG_HOME" ]; then
   export XDG_CONFIG_HOME="$HOME/.config"
 fi
@@ -49,6 +47,11 @@ if [ -z "$XDG_DATA_HOME" ]; then
 fi
 if [ -z "$XDG_CACHE_HOME" ]; then
   export XDG_CACHE_HOME="$HOME/.cache"
+fi
+
+# personal binaries
+if [[ -d "${HOME}/.local/bin" ]]; then
+  export PATH=${HOME}/.local/bin:$PATH
 fi
 
 # memo dir
@@ -61,8 +64,4 @@ fi
 # export PATH="/usr/local/opt/llvm/bin:$PATH"
 
 # zplug
-local zh=/usr/local/opt/zplug
-if [[ -d $zh ]]; then
-  export ZPLUG_HOME=$zh
-  source $ZPLUG_HOME/init.zsh
-fi
+export ZPLUG_HOME="${HOME}/.zplug"

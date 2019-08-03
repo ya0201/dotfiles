@@ -61,33 +61,37 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
 ### Prompt ###
-# basic prompt color setting
+autoload -Uz add-zsh-hook
+autoload -Uz vcs_info
 autoload -Uz colors
 colors
 
+# to show the number of suspended vim
+function _vim_jobs () {
+  VIM_JOBS=$(jobs | awk '{ print $4 }' | grep vim | wc -l | xargs)
+}
+add-zsh-hook precmd _vim_jobs
+
 # 一般ユーザ時
-top_left="%{${fg[green]}%}[%M:%~]"
+top_left='%{${fg[green]}%}[%M:%~](suspended vim: ${VIM_JOBS})'
 bottom_left="%{${fg[cyan]}%}%n $ %{${reset_color}%}"
-# tmp_prompt="%{${fg[cyan]}%}[%n@%m] $ %{${reset_color}%}"
-# tmp_prompt="%m:%c %{${fg[cyan]}%}%n$ "
-# tmp_prompt="maiMacBookPro:%c %{${fg[cyan]}%}me$ "
 # rootユーザ時(太字にし、アンダーバーをつける)
 if [ ${UID} -eq 0 ]; then
   bottom_left="%B%U${bottom_left}%u%b"
 fi
+
 # prompt
-PROMPT="$top_left
-$bottom_left"
+PROMPT="${top_left}
+${bottom_left}"
 
 # right-prompt shows git information
-autoload -Uz vcs_info
 setopt prompt_subst
 zstyle ':vcs_info:git:*' check-for-changes true
 zstyle ':vcs_info:git:*' stagedstr "%F{yellow}!"
 zstyle ':vcs_info:git:*' unstagedstr "%F{red}+"
 zstyle ':vcs_info:*' formats "%F{green}%c%u[%b]%f"
 zstyle ':vcs_info:*' actionformats '[%b|%a]'
-precmd () { vcs_info }
+add-zsh-hook precmd vcs_info
 RPROMPT='${vcs_info_msg_0_}'
 
 
@@ -297,9 +301,19 @@ function fip() {
 }
 
 # zplug
-check_is_installed zplug
-if [[ $? -eq 0 ]]; then
-  zplug "zsh-users/zsh-syntax-highlighting"
+local zicc=$XDG_CACHE_HOME/.zplug_install_confirmation_cache
+if [[ ! -f $ZPLUG_HOME/init.zsh && ! -f $zicc ]]; then
+  printf "Install ZPlug? [y/N]: "
+  if read -q; then
+    echo; curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+  else
+    echo; touch $zicc
+  fi
+fi
+if [[ -f $ZPLUG_HOME/init.zsh ]]; then
+  source $ZPLUG_HOME/init.zsh
+  zplug "zsh-users/zsh-syntax-highlighting", defer:2
+  zplug "zsh-users/zsh-completions"
   zplug "rupa/z"
 
   # Install packages that have not been installed yet
@@ -314,18 +328,17 @@ if [[ $? -eq 0 ]]; then
 
   zplug load --verbose
 fi
+if [[ -f $ZPLUG_REPOS/rupa/z/z.sh ]]; then
+  # load z
+  source $ZPLUG_REPOS/rupa/z/z.sh
+fi
 
 # z wo peco tte bakusoku cd
 # ref: https://qiita.com/maxmellon/items/23325c22581e9187639e
-local z_dot_sh_path=$ZPLUG_REPOS/rupa/z/z.sh
-check_is_installed brew
-if [[ $? -eq 0 && -f $z_dot_sh_path ]]; then
-  # load z
-  . $z_dot_sh_path
-
+check_is_installed z peco
+if [[ $? -eq 0 ]]; then
   # search function definition
   function peco-z-search {
-    check_is_installed peco z
     if [ $? -ne 0 ]; then
       echo "Please install peco and z"
       return 1

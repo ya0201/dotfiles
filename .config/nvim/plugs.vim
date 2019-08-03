@@ -170,6 +170,9 @@ endif
 if executable('gopls')
   let g:LanguageClient_serverCommands['go'] = ['gopls']
 endif
+if executable('yaml-language-server')
+  let g:LanguageClient_serverCommands['yaml'] = ['yaml-language-server', '--stdio']
+endif
 augroup LanguageClient_config
   autocmd!
   autocmd User LanguageClientStarted setlocal signcolumn=yes
