@@ -339,10 +339,6 @@ check_is_installed z peco
 if [[ $? -eq 0 ]]; then
   # search function definition
   function peco-z-search {
-    if [ $? -ne 0 ]; then
-      echo "Please install peco and z"
-      return 1
-    fi
     local res=$(z | sort -rn | cut -c 12- | peco)
     if [ -n "$res" ]; then
       BUFFER+="cd $res"
@@ -355,6 +351,13 @@ if [[ $? -eq 0 ]]; then
   # map search function to Ctrl-f
   zle -N peco-z-search
   bindkey '^f' peco-z-search
+else
+  function plz-install-peco-z {
+    echo "Please install peco and z"
+    return 1
+  }
+  zle -N plz-install-peco-z
+  bindkey '^f' plz-install-peco-z
 fi
 
 # vim with aimai search
@@ -373,6 +376,13 @@ if [ $? -eq 0 ]; then
   # map vim-peco-edit to Ctrl-v
   zle -N vim-peco-edit
   bindkey '^v' vim-peco-edit
+else
+  function plz-install-peco-vim {
+    echo "Please install peco and vim"
+    return 1
+  }
+  zle -N plz-install-peco-vim
+  bindkey '^v' plz-install-peco-vim
 fi
 
 # https://postd.cc/how-to-boost-your-vim-productivity/
