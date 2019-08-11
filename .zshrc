@@ -326,7 +326,7 @@ if [[ -f $ZPLUG_HOME/init.zsh ]]; then
     fi
   fi
 
-  zplug load --verbose
+  zplug load
 fi
 if [[ -f $ZPLUG_REPOS/rupa/z/z.sh ]]; then
   # load z
