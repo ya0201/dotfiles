@@ -45,7 +45,7 @@ call plug#begin(s:plugged_dir)
     \ 'do': 'bash install.sh',
     \ }
   Plug 'ctrlpvim/ctrlp.vim'
-
+  Plug 't9md/vim-textmanip'
 call plug#end()
 
 
@@ -228,3 +228,14 @@ let g:ctrlp_custom_ignore = {
   \ 'file': '\v\.(exe|so|dll)$',
   \ 'link': 'some_bad_symbolic_links',
   \ }
+
+" vim-textmanip
+" https://github.com/t9md/vim-textmanip
+" 選択したテキストの移動
+vmap <C-j> <Plug>(textmanip-move-down)
+vmap <C-k> <Plug>(textmanip-move-up)
+vmap <C-h> <Plug>(textmanip-move-left)
+vmap <C-l> <Plug>(textmanip-move-right)
+" 行の複製
+vmap <Space>d <Plug>(textmanip-duplicate-down)
+nmap <Space>d <Plug>(textmanip-duplicate-down)
