@@ -6,7 +6,7 @@ source /etc/profile
 # if [ -x "`which brew 2>/dev/null`" ]; then
 which brew >/dev/null 2>&1
 if [ $? -eq 0 ]; then
-  export PATH="$(brew --prefix)/bin:$(brew --prefix)/sbin:$PATH"
+  export PATH="$PATH:$(brew --prefix)/bin:$(brew --prefix)/sbin"
 fi
 
 # The next line updates PATH for the Google Cloud SDK.
