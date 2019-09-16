@@ -90,11 +90,6 @@
 ;; 対応する括弧を光らせる
 (show-paren-mode 1)
 
-;; ウィンドウ内に収まらないときだけ、カッコ内も光らせる
-(setq show-paren-style 'mixed)
-(set-face-background 'show-paren-match-face "grey")
-(set-face-foreground 'show-paren-match-face "black")
-
 ;; スペース、タブなどを可視化する
 (global-whitespace-mode 1)
 
@@ -141,3 +136,6 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+(setq auto-mode-alist (cons '("\\.v$" . coq-mode) auto-mode-alist))
+(autoload 'coq-mode "coq" "Major mode for editing Coq vernacular." t)
