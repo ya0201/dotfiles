@@ -8,6 +8,9 @@ curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/instal
 
 nvim -c PlugInstall -c qa
 
+# touchpad setting
+sudo cp ./30-touchpad.conf /etc/X11/xorg.conf.d/
+
 # japanese input setting
 if which fcitx >/dev/null 2>&1; then
   sudo apt install -y fcitx-mozc

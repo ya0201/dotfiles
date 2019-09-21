@@ -12,7 +12,9 @@ for f in * .*; do
   [ "$f" = ".ssh" ] && continue
   [[ $f = *.md ]] && continue
   [[ $f = *.sh ]] && continue
+  [[ $f = *.bash ]] && continue
   [[ $f = *.txt ]] && continue
+  [[ $f = 30-touchpad.conf ]] && continue
 
   if [ -e $HOME/$f ]; then
     echo "Cannot deploy $f: $HOME/$f already exists"
