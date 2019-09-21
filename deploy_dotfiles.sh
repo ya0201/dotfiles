@@ -9,6 +9,7 @@ for f in * .*; do
   [ "$f" = ".git" ] && continue
   [ "$f" = ".gitignore" ] && continue
   [ "$f" = ".config" ] && continue
+  [ "$f" = ".ssh" ] && continue
   [[ $f = *.md ]] && continue
   [[ $f = *.sh ]] && continue
   [[ $f = *.txt ]] && continue
@@ -22,6 +23,7 @@ done
 
 cd .config
 CWD=$(pwd)
+mkdir -p $HOME/.config
 for f in * .*; do
   [ "$f" = "." ] && continue
   [ "$f" = ".." ] && continue
@@ -31,6 +33,16 @@ for f in * .*; do
     ln -s $CWD/$f $HOME/.config/$f
   fi
 done
+cd ..
+
+cd .ssh
+CWD=$(pwd)
+mkdir -p $HOME/.ssh
+if [[ -e $HOME/.ssh/config ]]; then
+  echo "Cannot deploy .ssh/config: $HOME/.ssh/config already exists"
+else
+  ln -s $CWD/config $HOME/.ssh/config
+fi
 cd ..
 
 echo "Deploying done"
