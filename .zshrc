@@ -41,6 +41,14 @@ setopt nobgnice
 # !bなどをコマンド履歴に展開しない
 setopt nobanghist
 
+# cd したら自動的にpushdする
+setopt auto_pushd
+# 重複したディレクトリを追加しない
+setopt pushd_ignore_dups
+# Extend dirstacksize
+DIRSTACKSIZE=100
+setopt pushdsilent
+
 # ------------------------------
 # Look And Feel Settings
 # ------------------------------
@@ -119,6 +127,7 @@ alias glog='git log'
 alias gcompute='gcloud compute'
 alias gci='gcloud compute instances'
 alias gssh='gcompute ssh'
+alias dv='dirs -v'
 
 # if nvim installed, then replace 'vim' command to 'nvim'
 which nvim >/dev/null 2>&1
@@ -129,7 +138,7 @@ fi
 
 # cdコマンド実行後、lsを実行する
 function cd() {
- builtin cd $@ && ls;
+ builtin cd $@ && ls && MY_DIRSTACK=();
 }
 
 # alcで英単語を検索してlynxで見たりするためのコマンド
@@ -397,3 +406,53 @@ fancy-ctrl-z () {
 }
 zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
+
+# ディレクトリ内ファイルをgrepで全文検索してpecoで絞り込み、該当行をvimで開く
+vim-grep-peco () {
+  if [[ $# -lt 2 ]]; then
+    echo "Usage: vim-grep-peco [word] [dir1] [dir2] ..."
+    return 1
+  fi
+
+  local selected_line=$(grep -inr -- "$@" | peco | awk -F: '{print "-c", $2, $1}')
+  if [[ -n $selected_line ]]; then
+    vim ${=selected_line}
+  fi
+}
+
+# MEMODIRとTILDIR用
+vigmt () {
+  if [[ $# -ne 1 ]]; then
+    echo "Usage: vigmt [word]"
+    return 1
+  fi
+
+  vim-grep-peco $1 $MEMODIR $TILDIR
+}
+
+# for moving around the directory stack by ctrl+j/ctrl+k
+MY_DIRSTACK=()
+go-back-in-dir-history () {
+  if [[ $#BUFFER -eq 0 ]]; then
+    local curr_dir="$(pwd)"
+    popd >/dev/null 2>&1
+    if [[ $? -eq 0 ]]; then
+      MY_DIRSTACK=($curr_dir $MY_DIRSTACK)
+      zle accept-line
+    fi
+  fi
+  return 0
+}
+go-forward-in-dir-history () {
+  if [[ $#BUFFER -eq 0 ]]; then
+    [[ $#MY_DIRSTACK -eq 0 ]] && return 0
+
+    pushd $MY_DIRSTACK[1] && shift MY_DIRSTACK
+    zle accept-line
+  fi
+  return 0
+}
+zle -N go-back-in-dir-history
+bindkey '^K' go-back-in-dir-history
+zle -N go-forward-in-dir-history
+bindkey '^J' go-forward-in-dir-history

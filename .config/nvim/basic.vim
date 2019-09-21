@@ -43,6 +43,7 @@ set title
 set wildmenu wildmode=list:full
 set belloff=all
 set cursorline
+set list
 " beautiful substitute
 set inccommand=split
 set clipboard+=unnamed
