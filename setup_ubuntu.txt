@@ -4,4 +4,4 @@ sudo pip3 install neovim
 # install zplug
 curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 
-vim -c PlugInstall -c qa
+nvim -c PlugInstall -c qa
