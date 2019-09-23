@@ -48,7 +48,7 @@ Type=simple
 RemainAfterExit=yes
 
 [Install]
-WantedBy=xsession.target
+WantedBy=default.target
 EOS
 
     if [[ $(sudo systemctl --user list-unit-files --type=service | grep xkeysnail | wc -l) -eq 0 ]]; then
