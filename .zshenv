@@ -17,12 +17,15 @@ if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then source "$HOME/google
 
 
 ## Go env
-# if [ -x "`which go 2>/dev/null`" ]; then
+# if install go with tarballs, then place it to /usr/local/go
+which go >/dev/null 2>&1
+[[ $? -eq 1 && -d /usr/local/go ]] && export PATH=$PATH:/usr/local/go/bin
+
 which go >/dev/null 2>&1
 if [ $? -eq 0 ]; then
   export GOPATH=$HOME/.go
   export PATH=$PATH:$GOPATH/bin
-  export PATH=$PATH:/usr/local/opt/go/libexec/bin
+  [[ -d /usr/local/opt/go ]] && export PATH=$PATH:/usr/local/opt/go/libexec/bin
 fi
 
 ## pyenv
