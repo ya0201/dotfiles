@@ -1,5 +1,7 @@
 set -e
 
+[[ -z $XDG_CONFIG_HOME ]] && XDG_CONFIG_HOME="$HOME/.config"
+
 function check_is_installed() {
   which $@ >/dev/null 2>&1
 fi
@@ -59,7 +61,7 @@ EOS
     sudo systemctl --user enable xkeysnail
     sudo systemctl --user start xkeysnail
   else
-    echo 'Could not add xkeysnail group. Do nothing.'
+    echo 'Could not add xkeysnail group.'
     false
   fi
 fi
