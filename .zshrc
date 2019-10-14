@@ -132,6 +132,12 @@ alias gci='gcloud compute instances'
 alias gssh='gcompute ssh'
 alias dv='dirs -v'
 
+if [[ $(uname) == 'Darwin' ]]; then
+  # option + arrows
+  bindkey "^[^[[D" backward-word
+  bindkey "^[^[[C" forward-word
+fi
+
 # if nvim installed, then replace 'vim' command to 'nvim'
 which nvim >/dev/null 2>&1
 if [ $? -eq 0 ]; then
@@ -311,6 +317,17 @@ function fip() {
   command-peco 'find . 2>/dev/null'
   return $?
 }
+
+# tmux
+local ticc=$XDG_CACHE_HOME/.tpm_install_confirmation_cache
+if [[ ! -f $XDG_DATA_HOME/tmux/plugins/tpm/tpm && ! -f $ticc ]]; then
+  printf "Install TPM? [y/N]: "
+  if read -q; then
+    echo; git clone https://github.com/tmux-plugins/tpm "${XDG_DATA_HOME}/tmux/plugins/tpm"; echo "[IMPORTANT] Make sure to run 'prefix I' for installing tmux plugins"
+  else
+    echo; touch $ticc
+  fi
+fi
 
 # zplug
 local zicc=$XDG_CACHE_HOME/.zplug_install_confirmation_cache
