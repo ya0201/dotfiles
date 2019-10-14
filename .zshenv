@@ -58,6 +58,7 @@ fi
 # personal binaries
 if [[ -d "${HOME}/.local/bin" ]]; then
   export PATH=${HOME}/.local/bin:$PATH
+  mkdir -p ${HOME}/.local/bin
 fi
 
 # memo dir
@@ -65,6 +66,12 @@ fi
 if [ -z "$MEMODIR" ]; then
   export MEMODIR="${HOME}/GoogleDrive/memo"
 fi
+
+# TIL dir
+if [ -z "$TILDIR" ]; then
+  export TILDIR="${HOME}/til"
+fi
+
 
 # for newer clang
 # export PATH="/usr/local/opt/llvm/bin:$PATH"

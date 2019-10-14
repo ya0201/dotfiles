@@ -35,6 +35,8 @@ setopt inc_append_history
 # インクリメンタルからの検索
 bindkey "^R" history-incremental-search-backward
 bindkey "^S" history-incremental-search-forward
+# multi tabs share history
+setopt share_history
 
 # バックグラウンドジョブの優先度を下げない
 setopt nobgnice
