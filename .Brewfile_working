@@ -5,6 +5,7 @@ brew 'git'
 brew "neovim"
 brew "zsh"
 brew "zsh-completions"
+brew "tmux"
 
 # cask
 cask "iterm2"
