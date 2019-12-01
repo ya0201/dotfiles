@@ -69,7 +69,8 @@ fi
 
 # japanese input setting
 if which fcitx >/dev/null 2>&1; then
-  sudo apt install -y fcitx-mozc
+  sudo apt install -y language-pack-ja fcitx-mozc
+  im-config -n fcitx
 fi
 
 set +e
