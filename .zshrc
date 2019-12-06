@@ -450,7 +450,7 @@ vigmt () {
   vim-grep-peco $1 $MEMODIR $TILDIR
 }
 
-# for moving around the directory stack by ctrl+j/ctrl+k
+# for moving around the directory stack by ctrl+j/ctrl+u
 MY_DIRSTACK=()
 go-back-in-dir-history () {
   if [[ $#BUFFER -eq 0 ]]; then
@@ -473,6 +473,6 @@ go-forward-in-dir-history () {
   return 0
 }
 zle -N go-back-in-dir-history
-bindkey '^K' go-back-in-dir-history
+bindkey '^u' go-back-in-dir-history
 zle -N go-forward-in-dir-history
-bindkey '^J' go-forward-in-dir-history
+bindkey '^j' go-forward-in-dir-history
