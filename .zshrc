@@ -476,3 +476,26 @@ zle -N go-back-in-dir-history
 bindkey '^u' go-back-in-dir-history
 zle -N go-forward-in-dir-history
 bindkey '^j' go-forward-in-dir-history
+
+# history incremental search
+check_is_installed peco
+if [[ $? -eq 0 ]]; then
+  check_is_installed tac
+  if [[ $? -eq 0 ]]; then
+    # centos/ubuntu
+    history-peco-search () {
+      BUFFER=$(history -n 1 | tac | awk '!a[$0]++' | peco)
+      CURSOR=$#BUFFER
+      zle reset-prompt
+    }
+  else
+    # freebsd family
+    history-peco-search () {
+      BUFFER=$(history -n 1 | tail -r | awk '!a[$0]++' | peco)
+      CURSOR=$#BUFFER
+      zle reset-prompt
+    }
+  fi
+  zle -N history-peco-search
+  bindkey '^R' history-peco-search
+fi
