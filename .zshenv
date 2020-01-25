@@ -56,10 +56,8 @@ if [ -z "$XDG_CACHE_HOME" ]; then
 fi
 
 # personal binaries
-if [[ -d "${HOME}/.local/bin" ]]; then
-  export PATH=${HOME}/.local/bin:$PATH
-  mkdir -p ${HOME}/.local/bin
-fi
+export PATH=${HOME}/.local/bin:$PATH
+mkdir -p ${HOME}/.local/bin
 
 # memo dir
 # assumed to be used by memo (memo tool by golang)
