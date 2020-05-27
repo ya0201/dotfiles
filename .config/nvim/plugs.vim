@@ -30,20 +30,12 @@ call plug#begin(s:plugged_dir)
   Plug 'ya0201/vim-exesound'
   Plug 'rust-lang/rust.vim'
   Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-  " A dependency of 'ncm2'.
-	Plug 'roxma/nvim-yarp'
-  " v2 of the nvim-completion-manager.
-	Plug 'ncm2/ncm2'
   " snippet
   Plug 'SirVer/ultisnips'
-  Plug 'ncm2/ncm2-ultisnips'
   Plug 'honza/vim-snippets'
 
-  Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
   Plug 'ctrlpvim/ctrlp.vim'
   Plug 't9md/vim-textmanip'
 call plug#end()
@@ -114,31 +106,11 @@ function! s:mylatexmkc()
     QuickRun mylatexmkc
   endif
 endfunction
-
 augroup quickrun_tex
   autocmd!
   autocmd BufWritePost *.tex :call s:mylatexmk()
   autocmd BufWinLeave *.tex :call s:mylatexmkc()
 augroup END
-
-" neosnippet
-" Plugin key-mappings.
-" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-" imap <C-\>     <Plug>(neosnippet_expand_or_jump)
-" smap <C-\>     <Plug>(neosnippet_expand_or_jump)
-" xmap <C-\>     <Plug>(neosnippet_expand_target)
-" SuperTab like snippets behavior.
-" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-"imap <expr><TAB>
-" \ pumvisible() ? "\<C-n>" :
-" \ neosnippet#expandable_or_jumpable() ?
-" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-" smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-" For conceal markers.
-" if has('conceal')
-"   set conceallevel=2 concealcursor=niv
-" endif
 
 " vim-exesound
 let g:exesound_auto_nt_open = 1
@@ -146,65 +118,34 @@ let g:exesound_auto_focus_on_nt = 1
 let g:exesound_py_version = 3
 
 " LanguageClient-neovim
-let g:LanguageClient_serverCommands = {}
-if executable('cquery')
-  let b:cq_cache_path = expand($XDG_CACHE_HOME . '/cquery')
-  if !isdirectory(b:cq_cache_path)
-    call mkdir(b:cq_cache_path, 'p')
-  endif
-  let g:LanguageClient_serverCommands['c'] = [
-    \ 'cquery', 
-    \ '--log-file=/tmp/cq.log', 
-    \ '--init={"cacheDirectory":"' . b:cq_cache_path . '"}']
-  let g:LanguageClient_serverCommands['cpp'] = [
-    \ 'cquery', 
-    \ '--log-file=/tmp/cq.log', 
-    \ '--init={"cacheDirectory":"' . b:cq_cache_path . '"}']
-endif
-if executable('rls')
-  let g:LanguageClient_serverCommands['rust'] = ['rls'] 
-endif
-if executable('pyls')
-  let g:LanguageClient_serverCommands['python'] = ['pyls'] 
-endif
-if executable('gopls')
-  let g:LanguageClient_serverCommands['go'] = ['gopls']
-endif
-if executable('yaml-language-server')
-  let g:LanguageClient_serverCommands['yaml'] = ['yaml-language-server', '--stdio']
-endif
-augroup LanguageClient_config
-  autocmd!
-  autocmd User LanguageClientStarted setlocal signcolumn=yes
-  autocmd User LanguageClientStopped setlocal signcolumn=auto
-augroup END
-let g:LanguageClient_autoStart = 1
-let g:LanguageClient_diagnosticsList = "Location"
-command! -nargs=0 Langhover call LanguageClient_textDocument_hover()
-command! -nargs=0 Langdef call LanguageClient_textDocument_definition()
-command! -nargs=0 Langrename call LanguageClient_textDocument_rename()
-command! -nargs=0 Langformat call LanguageClient_textDocument_formatting()
-nnoremap <C-]> :Langdef<CR>
+" if executable('cquery')
+"   let b:cq_cache_path = expand($XDG_CACHE_HOME . '/cquery')
+"   if !isdirectory(b:cq_cache_path)
+"     call mkdir(b:cq_cache_path, 'p')
+"   endif
+"   let g:LanguageClient_serverCommands['c'] = [
+"     \ 'cquery', 
+"     \ '--log-file=/tmp/cq.log', 
+"     \ '--init={"cacheDirectory":"' . b:cq_cache_path . '"}']
+"   let g:LanguageClient_serverCommands['cpp'] = [
+"     \ 'cquery', 
+"     \ '--log-file=/tmp/cq.log', 
+"     \ '--init={"cacheDirectory":"' . b:cq_cache_path . '"}']
+" endif
+" if executable('rls')
+"   let g:LanguageClient_serverCommands['rust'] = ['rls'] 
+" endif
+" if executable('pyls')
+"   let g:LanguageClient_serverCommands['python'] = ['pyls'] 
+" endif
+" if executable('gopls')
+"   let g:LanguageClient_serverCommands['go'] = ['gopls']
+" endif
+" if executable('yaml-language-server')
+"   let g:LanguageClient_serverCommands['yaml'] = ['yaml-language-server', '--stdio']
+" endif
+" nnoremap <C-]> :Langdef<CR>
 
-
-" ncm2
-augroup ncm2_rc
-  autocmd!
-  autocmd BufEnter * call ncm2#enable_for_buffer()
-augroup END
-set completeopt=noinsert,menuone,noselect
-" settings to disable auto_popup (can be harmful) and manual popup key
-" let g:ncm2#auto_popup = 0
-" imap <silent><expr> <C-\> "\<Plug>(ncm2_manual_trigger)"
-" When the arrow key (up or down) is pressed while the popup menu is visible, 
-" map it to <c-p> or <c-n>.
-inoremap <expr> <Up> (pumvisible() ? "\<c-p>" : "\<Up>")
-inoremap <expr> <Down> (pumvisible() ? "\<c-n>" : "\<Down>")
-
-" ncm2-ultisnip
-" Press enter key to trigger snippet expansion
-" The parameters are the same as `:help feedkeys()`
-inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", 'n')
 
 " c-j c-k for moving in snippet
 let g:UltiSnipsExpandTrigger    = "<Plug>(ultisnips_expand)"
@@ -215,6 +156,7 @@ let g:UltiSnipsSnippetDirectories=[$HOME.'/myultisnips', $XDG_DATA_HOME.'/nvim/p
 
 " rust.vim
 let g:rustfmt_autosave = 1
+
 " CtrlP
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'

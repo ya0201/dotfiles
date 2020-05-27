@@ -9,3 +9,5 @@
 !.ssh/config
 .config/coc/*
 .config/configstore/*
+go.mod
+go.sum

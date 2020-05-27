@@ -7,6 +7,8 @@ endfunction
 
 " load plugin config
 source <sfile>:h/plugs.vim
+" load coc config
+source <sfile>:h/coc-config.vim
 
 " set colorscheme
 " colorscheme must be set after loading myplugs.vim because iceberg is managed by vim-plug
