@@ -71,9 +71,10 @@ nnoremap <Space>q :q<CR>
 
 " grでvimgrep
 " normalならカーソル下，visualなら選択範囲で検索
+" 20200730: cocのkey mappingとバッティングしたため無効化
 " nnoremap <expr> gr ':vimgrep;\<' . expand('<cword>') . '\>; **/*'
-nnoremap <expr> gr ':vimgrep;' . expand('<cword>') . '; **/*'
-vnoremap gr "vy:vimgrep;<C-r>=substitute(escape(@v,'\/'),"\n",'\\n','g')<CR>; **/*
+" nnoremap <expr> gr ':vimgrep;' . expand('<cword>') . '; **/*'
+" vnoremap gr "vy:vimgrep;<C-r>=substitute(escape(@v,'\/'),"\n",'\\n','g')<CR>; **/*
 
 " open quickfix-window for :vimgrep, :grep, :Ggrep
 autocmd QuickFixCmdPost *grep* cwindow
