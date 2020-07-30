@@ -131,6 +131,7 @@ alias gcompute='gcloud compute'
 alias gci='gcloud compute instances'
 alias gssh='gcompute ssh'
 alias dv='dirs -v'
+alias kcl='kubectl'
 
 if [[ $(uname) == 'Darwin' ]]; then
   # option + arrows
