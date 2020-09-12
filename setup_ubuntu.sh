@@ -4,7 +4,7 @@ set -e
 
 function check_is_installed() {
   which $@ >/dev/null 2>&1
-fi
+}
 
 sudo apt install -y curl python3-pip zsh neovim peco tmux
 sudo pip3 install neovim xkeysnail
