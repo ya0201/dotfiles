@@ -133,6 +133,9 @@ alias gssh='gcompute ssh'
 alias dv='dirs -v'
 alias kl='kubectl'
 
+## pyenv
+[[ -d "${PYENV_ROOT}" ]] && eval "$(pyenv init -)"
+
 if [[ $(uname) == 'Darwin' ]]; then
   # option + arrows
   bindkey "^[^[[D" backward-word
