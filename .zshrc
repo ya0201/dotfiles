@@ -112,6 +112,7 @@ RPROMPT='${vcs_info_msg_0_}'
 ### Aliases ###
 alias v=vim
 alias vizr='vim ~/.zshrc'
+alias vp='vim-grep-peco'
 ls --color >/dev/null 2>&1 && alias ls='ls --color'
 alias ll='ls -l'
 alias la='ls -a'
