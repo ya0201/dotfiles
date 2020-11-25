@@ -70,6 +70,15 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 # ref: https://ozuma.hatenablog.jp/entry/20141219/1418915137
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
+### initialize brew-installed zsh
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh/functions:$FPATH
+  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+
+  autoload -Uz compinit
+  compinit
+fi
+
 ### Prompt ###
 autoload -Uz add-zsh-hook
 autoload -Uz vcs_info
