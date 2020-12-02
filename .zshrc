@@ -74,9 +74,6 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh/functions:$FPATH
   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
-
-  autoload -Uz compinit
-  compinit
 fi
 
 ### Prompt ###
