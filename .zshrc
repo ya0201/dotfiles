@@ -139,6 +139,8 @@ alias gci='gcloud compute instances'
 alias gssh='gcompute ssh'
 alias dv='dirs -v'
 alias kl='kubectl'
+alias kg='kubectl get'
+alias kd='kubectl describe'
 
 ## pyenv
 [[ -d "${PYENV_ROOT}" ]] && eval "$(pyenv init -)"
