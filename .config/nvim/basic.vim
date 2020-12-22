@@ -47,7 +47,9 @@ set belloff=all
 set cursorline
 set list
 " beautiful substitute
-set inccommand=split
+if has('nvim')
+  set inccommand=split
+endif
 set clipboard+=unnamed
 highlight CursorLine term=underline cterm=underline ctermfg=NONE ctermbg=NONE
 highlight CursorLine gui=underline guifg=NONE guibg=NONE

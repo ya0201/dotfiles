@@ -1,11 +1,10 @@
 cask_args appdir: '/Applications'
 
 # brew
-brew 'git'
 brew "neovim"
-brew "zsh"
-brew "zsh-completions"
 brew "tmux"
+brew 'peco'
+brew 'node'
 
 # cask
 cask "iterm2"

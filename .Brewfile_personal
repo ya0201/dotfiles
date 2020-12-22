@@ -1,7 +1,6 @@
 cask_args appdir: '/Applications'
 
 # brew
-brew 'peco'
 brew 'mas'
 
 # cask

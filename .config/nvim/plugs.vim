@@ -33,7 +33,7 @@ call plug#begin(s:plugged_dir)
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
   " snippet
-  Plug 'SirVer/ultisnips'
+  " Plug 'SirVer/ultisnips'
   Plug 'honza/vim-snippets'
 
   Plug 'ctrlpvim/ctrlp.vim'

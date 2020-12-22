@@ -3,7 +3,9 @@ source /etc/profile
 # export PATH="$PATH:$ANT_HOME/bin"
 
 # homebrew
-# if [ -x "`which brew 2>/dev/null`" ]; then
+## for apple sillicon macos
+[[ -d /opt/homebrew ]] && export PATH="$PATH:/opt/homebrew/bin"
+
 which brew >/dev/null 2>&1
 if [ $? -eq 0 ]; then
   export PATH="$PATH:$(brew --prefix)/bin:$(brew --prefix)/sbin"
