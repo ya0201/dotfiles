@@ -73,7 +73,7 @@ fi
 
 
 # for newer clang
-# export PATH="/usr/local/opt/llvm/bin:$PATH"
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 
 # zplug
 export ZPLUG_HOME="${HOME}/.zplug"
