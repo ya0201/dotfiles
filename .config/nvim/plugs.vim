@@ -93,6 +93,10 @@ let g:quickrun_config = {
 \  'exec': '%c -c %s:r',
 \  'runner' : 'system',
 \ },
+\ 'cpp': {
+\  'command': 'g++',
+\  'cmdopt': '-std=c++14',
+\ },
 \}
 function! s:mylatexmk()
   if getcwd() == expand("%:p:h")
