@@ -326,8 +326,8 @@ function llap() {
   command-peco 'ls -al'
   return $?
 }
-function fip() {
-  command-peco 'find . 2>/dev/null'
+function fifp() {
+  command-peco 'find . -type f 2>/dev/null'
   return $?
 }
 
@@ -406,7 +406,7 @@ fi
 check_is_installed vim peco
 if [ $? -eq 0 ]; then
   function vim-peco-edit {
-    local selected=$(fip)
+    local selected=$(fifp)
     if [ -n "$selected" ]; then
       BUFFER+="vim $selected"
       zle accept-line
