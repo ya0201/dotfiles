@@ -139,8 +139,8 @@ alias gci='gcloud compute instances'
 alias gssh='gcompute ssh'
 alias dv='dirs -v'
 alias kl='kubectl'
-alias kg='kubectl get'
-alias kd='kubectl describe'
+alias cbrun='docker run --rm -v $(pwd):/src -w /src compilerbook'
+alias cbsh='docker run --rm -it -v $(pwd):/src -w /src compilerbook'
 
 ## pyenv
 [[ -d "${PYENV_ROOT}" ]] && eval "$(pyenv init -)"
