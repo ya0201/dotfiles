@@ -42,6 +42,12 @@ if [ -d "${CARGO_ROOT}" ]; then
   export PATH=${CARGO_ROOT}/bin:$PATH
 fi
 
+## flutter
+export FLUTTER_ROOT="${HOME}/flutter"
+if [ -d "${FLUTTER_ROOT}" ]; then
+  export PATH=${FLUTTER_ROOT}/bin:$PATH
+fi
+
 # XDG Base Directory Specification and file-hierarchy(7)
 if [ -z "$XDG_CONFIG_HOME" ]; then
   export XDG_CONFIG_HOME="$HOME/.config"
