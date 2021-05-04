@@ -12,6 +12,8 @@ setopt no_flow_control
 # どっかからコピペしてきたため$ $ lsなどとなっても実行できるようにする
 function $ { $@ }
 
+disable r
+
 ### Complement ###  
 # basic complement setting
 # autoload -U compinit
