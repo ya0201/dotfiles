@@ -147,4 +147,4 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
-let g:coc_global_extensions = ['coc-go', 'coc-jedi', 'coc-snippets', 'coc-clangd']
+let g:coc_global_extensions = ['coc-go', 'coc-jedi', 'coc-snippets', 'coc-clangd', 'coc-flutter']
