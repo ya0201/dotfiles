@@ -67,6 +67,7 @@ noremap <S-h>   ^
 noremap <S-l>   $
 nnoremap x "_x
 nnoremap Q <Nop>
+nnoremap U :redo<CR>
 " https://postd.cc/how-to-boost-your-vim-productivity/
 nnoremap <Space>w :w<CR>
 nnoremap <Space>q :q<CR>

@@ -32,11 +32,16 @@ call plug#begin(s:plugged_dir)
   Plug 'Shougo/vimproc.vim', {'do' : 'make'}
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+  " flutter
+  Plug 'dart-lang/dart-vim-plugin'
+  Plug 'thosakwe/vim-flutter'
+
   " snippet
   Plug 'SirVer/ultisnips'
   Plug 'honza/vim-snippets'
 
   Plug 'ctrlpvim/ctrlp.vim'
+  Plug 'ya0201/ctrlp-history'
   Plug 't9md/vim-textmanip'
 call plug#end()
 
@@ -185,3 +190,20 @@ vmap <C-l> <Plug>(textmanip-move-right)
 " 行の複製
 vmap <Space>d <Plug>(textmanip-duplicate-down)
 nmap <Space>d <Plug>(textmanip-duplicate-down)
+
+" ctrlp-history
+" if exists('g:loaded_ctrlp_history_cmd') && g:loaded_ctrlp_history_cmd
+"   nnoremap <C-r> :CtrlPCmdHistory<CR>
+" endif
+
+" nnoremap <expr><silent> <C-r> exists('g:loaded_ctrlp_history_cmd') && g:loaded_ctrlp_history_cmd ? :CtrlPCmdHistory<CR> : :redo<CR>
+" nnoremap <expr><silent> <C-r> exists('g:loaded_ctrlp_history_cmd') && g:loaded_ctrlp_history_cmd ? CtrlPCmdHistory : redo
+
+function! MyCmdHistoryOrRedo()
+  if ( exists('g:loaded_ctrlp_history') && g:loaded_ctrlp_history )
+    :CtrlPCmdHistory<CR>
+  else
+    :redo
+  endif
+endfunction
+nnoremap <C-r> :call MyCmdHistoryOrRedo()<CR>
