@@ -9,7 +9,7 @@ endfunction
 
 " Judge whether editing list or not
 function! IsListElem()
-    return GetBeforeStr() =~ '^\s*-\s'
+    return GetBeforeStr() =~ '^\s*[-*]\s'
 endfunction
 
 " Function that extends Tab
