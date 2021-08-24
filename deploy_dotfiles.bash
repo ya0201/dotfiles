@@ -15,6 +15,8 @@ for f in * .*; do
   [[ $f = *.bash ]] && continue
   [[ $f = *.txt ]] && continue
   [[ $f = 30-touchpad.conf ]] && continue
+  [[ $f = scripts ]] && continue
+  [[ $f = Makefile ]] && continue
 
   if [ -e $HOME/$f ]; then
     echo "Cannot deploy $f: $HOME/$f already exists"

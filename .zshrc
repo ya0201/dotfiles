@@ -16,8 +16,8 @@ disable r
 
 ### Complement ###  
 # basic complement setting
-# autoload -U compinit
-# compinit
+autoload -U compinit
+compinit
 
 ### History ###
 HISTSIZE=10000
@@ -141,6 +141,7 @@ alias gci='gcloud compute instances'
 alias gssh='gcompute ssh'
 alias dv='dirs -v'
 alias kl='kubectl'
+alias kd='kubectl describe'
 alias cbrun='docker run --rm -v $(pwd):/src -w /src compilerbook'
 alias cbsh='docker run --rm -it -v $(pwd):/src -w /src compilerbook'
 
@@ -344,38 +345,21 @@ if [[ ! -f $XDG_DATA_HOME/tmux/plugins/tpm/tpm && ! -f $ticc ]]; then
   fi
 fi
 
-# zplug
-local zicc=$XDG_CACHE_HOME/.zplug_install_confirmation_cache
-if [[ ! -f $ZPLUG_HOME/init.zsh && ! -f $zicc ]]; then
-  printf "Install ZPlug? [y/N]: "
-  if read -q; then
-    echo; curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
-  else
-    echo; touch $zicc
-  fi
-fi
-if [[ -f $ZPLUG_HOME/init.zsh ]]; then
-  source $ZPLUG_HOME/init.zsh
-  zplug "zsh-users/zsh-syntax-highlighting", defer:2
-  zplug "zsh-users/zsh-completions"
-  zplug "rupa/z"
-
-  # Install packages that have not been installed yet
-  if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    else
-        echo
-    fi
-  fi
-
-  zplug load
-fi
+# load zsh plugins
+ZPLUG_REPOS=${ZPLUG_HOME}/repos
 if [[ -f $ZPLUG_REPOS/rupa/z/z.sh ]]; then
   # load z
   source $ZPLUG_REPOS/rupa/z/z.sh
 fi
+if [[ -d $ZPLUG_REPOS/zsh-users/zsh-completions/src ]]; then
+  export FPATH=${ZPLUG_REPOS}/zsh-users/zsh-completions/src:${FPATH}
+fi
+function defer_loading_zsh_plugins() {
+  if [[ -f $ZPLUG_REPOS/zsh-users/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
+    # load zsh-syntax-highlighting
+    source $ZPLUG_REPOS/zsh-users/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+  fi
+}
 
 # z wo peco tte bakusoku cd
 # ref: https://qiita.com/maxmellon/items/23325c22581e9187639e
@@ -529,4 +513,18 @@ if which ghq &> /dev/null; then
 
   zle -N peco-ghq
   bindkey '^G' peco-ghq
+fi
+
+# load dotfiles for work
+YJ_DOTFILES_DIR="${HOME}/yj-dotfiles"
+if [[ -d ${YJ_DOTFILES_DIR} ]]; then
+  source ${YJ_DOTFILES_DIR}/yj.zshrc
+fi
+
+# defer loading of zsh plugins
+defer_loading_zsh_plugins
+
+# for profiling
+if (which zprof > /dev/null 2>&1) ;then
+  zprof
 fi

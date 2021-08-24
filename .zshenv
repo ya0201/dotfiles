@@ -1,3 +1,6 @@
+# for profiling
+# zmodload zsh/zprof && zprof
+
 source /etc/profile
 # export ANT_HOME="/usr/local/bin/ant/"
 # export PATH="$PATH:$ANT_HOME/bin"
@@ -83,3 +86,4 @@ export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 
 # zplug
 export ZPLUG_HOME="${HOME}/.zplug"
+export ZSH_PLUGINS_NO_INSTALL=$XDG_CACHE_HOME/.zsh_plugins_no_install
