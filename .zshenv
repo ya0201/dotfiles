@@ -9,9 +9,8 @@ source /etc/profile
 ## for apple sillicon macos
 [[ -d /opt/homebrew ]] && export PATH="$PATH:/opt/homebrew/bin"
 
-_BREW_PATH=$(which brew 2>&1)
-if [[ $? -eq 0 ]]; then
-  _BREW_PREFIX=$(dirname $(dirname $_BREW_PATH))
+if _BREW_PATH=$(which brew 2>&1); [[ $? -eq 0 ]]; then
+  export _BREW_PREFIX=$(dirname $(dirname $_BREW_PATH))
   export PATH="$PATH:${_BREW_PREFIX}/bin:${_BREW_PREFIX}/sbin"
 fi
 

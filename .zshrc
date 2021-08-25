@@ -78,9 +78,10 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
 ### initialize brew-installed zsh
-if type brew &>/dev/null; then
-  FPATH=$(brew --prefix)/share/zsh/functions:$FPATH
-  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+### if brew installed, ${_BREW_PREFIX} is set in .zshenv
+if [[ -n $_BREW_PREFIX ]]; then
+  FPATH=${_BREW_PREFIX}/share/zsh/functions:$FPATH
+  FPATH=${_BREW_PREFIX}/share/zsh/site-functions:$FPATH
 fi
 
 ### Prompt ###
