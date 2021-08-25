@@ -7,3 +7,4 @@ pwd:
 .PHONY: install-zsh-plugins
 install-zsh-plugins:
 	@. $(CURRENT_DIR)/.zshenv
+	@$(CURRENT_DIR)/scripts/install-zsh-plugins.zsh 'install'

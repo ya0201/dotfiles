@@ -37,8 +37,8 @@ function _suppress() {
 function main() {
   source $(cd $(dirname $0);pwd)/../.zshenv
 
-  local progname="$1"
-  local subcmd="$2"
+  local progname="$0"
+  local subcmd="$1"
 
   usage() {
       echo "Usage: $progname [Subcommand]"
@@ -65,3 +65,5 @@ function main() {
           ;;
   esac
 }
+
+main "$@"
