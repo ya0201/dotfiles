@@ -151,7 +151,13 @@ alias cbrun='docker run --rm -v $(pwd):/src -w /src compilerbook'
 alias cbsh='docker run --rm -it -v $(pwd):/src -w /src compilerbook'
 
 ## pyenv
-[[ -d "${PYENV_ROOT}" ]] && eval "$(pyenv init -)"
+if [[ -d "${PYENV_ROOT}" ]]; then
+  function pyenv () {
+    unset -f pyenv
+    eval "$(pyenv init -)"
+    pyenv "$@"
+  }
+fi
 
 if [[ $(uname) == 'Darwin' ]]; then
   # option + arrows
@@ -168,7 +174,7 @@ fi
 
 # cdコマンド実行後、lsを実行する
 function cd() {
- builtin cd $@ && ls && MY_DIRSTACK=();
+  builtin cd $@ && ls && MY_DIRSTACK=();
 }
 
 # alcで英単語を検索してlynxで見たりするためのコマンド
