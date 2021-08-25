@@ -153,11 +153,10 @@ alias cbsh='docker run --rm -it -v $(pwd):/src -w /src compilerbook'
 
 ## pyenv
 if [[ -d "${PYENV_ROOT}" ]]; then
-  function pyenv () {
-    unset -f pyenv
-    eval "$(pyenv init -)"
-    pyenv "$@"
-  }
+  _py_funcs=('pyenv' 'python' 'python3')
+  for f in ${_py_funcs[@]}; do
+    eval "function $f () { unset -f $f; eval \"\$(pyenv init -)\"; $f \"\$@\" }"
+  done
 fi
 
 if [[ $(uname) == 'Darwin' ]]; then
