@@ -92,7 +92,10 @@ colors
 
 # to show the number of suspended vim
 function _vim_jobs () {
-  VIM_JOBS=$(jobs | awk '{ print $4 }' | grep vim | wc -l | xargs)
+  unset -f _vim_jobs
+  function _vim_jobs() {
+    VIM_JOBS=$(jobs | awk '{ print $4 }' | grep vim | wc -l | xargs)
+  }
 }
 add-zsh-hook precmd _vim_jobs
 
@@ -115,7 +118,13 @@ zstyle ':vcs_info:git:*' stagedstr "%F{yellow}!"
 zstyle ':vcs_info:git:*' unstagedstr "%F{red}+"
 zstyle ':vcs_info:*' formats "%F{green}%c%u[%b]%f"
 zstyle ':vcs_info:*' actionformats '[%b|%a]'
-add-zsh-hook precmd vcs_info
+function vcs_info_wrapper() {
+  unset -f vcs_info_wrapper
+  function vcs_info_wrapper() {
+    vcs_info
+  }
+}
+add-zsh-hook precmd vcs_info_wrapper
 RPROMPT='${vcs_info_msg_0_}'
 
 
