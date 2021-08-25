@@ -9,9 +9,10 @@ source /etc/profile
 ## for apple sillicon macos
 [[ -d /opt/homebrew ]] && export PATH="$PATH:/opt/homebrew/bin"
 
-which brew >/dev/null 2>&1
-if [ $? -eq 0 ]; then
-  export PATH="$PATH:$(brew --prefix)/bin:$(brew --prefix)/sbin"
+_BREW_PATH=$(which brew 2>&1)
+if [[ $? -eq 0 ]]; then
+  _BREW_PREFIX=$(dirname $(dirname $_BREW_PATH))
+  export PATH="$PATH:${_BREW_PREFIX}/bin:${_BREW_PREFIX}/sbin"
 fi
 
 # The next line updates PATH for the Google Cloud SDK.
