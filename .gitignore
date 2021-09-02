@@ -11,3 +11,4 @@
 .config/configstore/*
 go.mod
 go.sum
+*.zwc
