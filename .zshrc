@@ -151,9 +151,18 @@ alias gsh='git switch'
 alias gsc='git switch -c'
 alias gr='git restore'
 alias gd='git diff'
-alias gpush='git push'
-alias gpull='git pull'
 alias glog='git log'
+alias gpull='git pull'
+alias gpush='git push'
+function gpsuo() {
+  local branch=$(sed -e 's;^.*\[\(.*\)\].*$;\1;' <<< "${vcs_info_msg_0_}")
+  if [[ -n "$branch" ]]; then
+    git push --set-upstream origin "$branch"
+  else
+    echo "gpsuo error: '$branch' is empty"
+    return 1
+  fi
+}
 alias gcompute='gcloud compute'
 alias gci='gcloud compute instances'
 alias gssh='gcompute ssh'
