@@ -536,9 +536,9 @@ if which ghq &> /dev/null; then
 fi
 
 # load dotfiles for work
-YJ_DOTFILES_DIR="${HOME}/yj-dotfiles"
-if [[ -d ${YJ_DOTFILES_DIR} ]]; then
-  source ${YJ_DOTFILES_DIR}/yj.zshrc
+DOTFILES_WORKING_DIR="${HOME}/dotfiles-working"
+if [[ -d ${DOTFILES_WORKING_DIR} ]]; then
+  source ${DOTFILES_WORKING_DIR}/.zsh
 fi
 
 # defer loading of zsh plugins

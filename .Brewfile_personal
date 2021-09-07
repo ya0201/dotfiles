@@ -4,9 +4,7 @@ cask_args appdir: '/Applications'
 brew 'mas'
 
 # cask
-cask 'google-chrome'
 cask 'google-backup-and-sync'
-cask 'Contexts'
 
 # mas kakin
 mas 'Magnet', id: 441258766

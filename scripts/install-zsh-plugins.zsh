@@ -7,11 +7,6 @@ function _install() {
     echo; curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
   fi
 
-  if [[ ! -f $ZPLUG_HOME/init.zsh ]]; then
-    echo "Failed to install zplug. Please run again."
-    return 1
-  fi
-
   source $ZPLUG_HOME/init.zsh
   zplug "zsh-users/zsh-syntax-highlighting", defer:2
   zplug "zsh-users/zsh-completions"

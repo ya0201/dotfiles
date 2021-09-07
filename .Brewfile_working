@@ -5,8 +5,15 @@ brew "neovim"
 brew "tmux"
 brew 'peco'
 brew 'node'
+brew 'jq'
+brew 'python-yq'
+brew 'wget'
 
 # cask
 cask "iterm2"
 cask 'google-japanese-ime'
+cask 'google-chrome'
+cask 'vivaldi'
+cask 'Contexts'
 cask 'karabiner-elements'
+cask 'alfred'

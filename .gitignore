@@ -9,6 +9,7 @@
 !.ssh/config
 .config/coc/*
 .config/configstore/*
+.config/tmux/*.log
 go.mod
 go.sum
 *.zwc
