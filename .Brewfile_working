@@ -4,6 +4,7 @@ cask_args appdir: '/Applications'
 brew "neovim"
 brew "tmux"
 brew 'peco'
+brew 'fzf'
 brew 'node'
 brew 'jq'
 brew 'python-yq'
