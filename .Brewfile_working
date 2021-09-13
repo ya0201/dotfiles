@@ -9,6 +9,7 @@ brew 'node'
 brew 'jq'
 brew 'python-yq'
 brew 'wget'
+brew 'pwgen'
 
 # cask
 cask "iterm2"
