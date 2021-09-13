@@ -172,6 +172,28 @@ alias kd='kubectl describe'
 alias cbrun='docker run --rm -v $(pwd):/src -w /src compilerbook'
 alias cbsh='docker run --rm -it -v $(pwd):/src -w /src compilerbook'
 
+if which go >/dev/null 2>&1; then
+  function goinit() {
+    local dirname="$1"
+    mkdir "$dirname"
+    cd "$dirname"
+    go mod init "$dirname"
+    touch main.go
+    cat <<EOS > main.go
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	fmt.Println("hello, world")
+}
+EOS
+
+  }
+fi
+
 ## pyenv
 if [[ -d "${PYENV_ROOT}" ]]; then
   _py_funcs=('pyenv' 'python' 'python3')
