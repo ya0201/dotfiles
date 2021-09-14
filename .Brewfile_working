@@ -10,6 +10,7 @@ brew 'jq'
 brew 'python-yq'
 brew 'wget'
 brew 'pwgen'
+brew 'tree'
 
 # cask
 cask "iterm2"
