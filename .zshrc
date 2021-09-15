@@ -569,6 +569,16 @@ if which ghq &> /dev/null; then
   bindkey '^G' peco-ghq
 fi
 
+# snippet to read credential from stdin without logging plain text of credential to .zsh_history
+function read_cred() {
+  local credname="$1"
+
+  echo -n "Please input ${credname}: "
+  read -s "$credname"
+  export "$credname"
+  echo ''
+}
+
 # load dotfiles for work
 DOTFILES_WORKING_DIR="${HOME}/dotfiles-working"
 if [[ -d ${DOTFILES_WORKING_DIR} ]]; then
