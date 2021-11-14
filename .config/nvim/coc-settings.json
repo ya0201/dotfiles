@@ -1,5 +1,17 @@
 {
   "snippets.ultisnips.directories": [
     "$HOME/myultisnips"
-  ]
+  ],
+  "languageserver": {
+    "terraform": {
+      "command": "terraform-ls",
+      "args": ["serve"],
+      "filetypes": [
+        "terraform",
+        "tf"
+      ],
+      "initializationOptions": {},
+      "settings": {}
+    }
+  }
 }
