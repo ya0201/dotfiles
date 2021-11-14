@@ -154,6 +154,8 @@ alias gd='git diff'
 alias glog='git log'
 alias gpull='git pull'
 alias gpush='git push'
+alias gl='gcloud'
+
 function gpsuo() {
   local branch=$(sed -e 's;^.*\[\(.*\)\].*$;\1;' <<< "${vcs_info_msg_0_}")
   if [[ -n "$branch" ]]; then
