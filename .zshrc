@@ -387,7 +387,7 @@ function llap() {
   return $?
 }
 function fifp() {
-  command-peco 'find . -type f 2>/dev/null'
+  command-peco 'find . -type f 2>/dev/null | grep -v "./.git/"'
   return $?
 }
 
