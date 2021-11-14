@@ -155,6 +155,7 @@ alias glog='git log'
 alias gpull='git pull'
 alias gpush='git push'
 alias gl='gcloud'
+alias tf='terraform'
 
 function gpsuo() {
   local branch=$(sed -e 's;^.*\[\(.*\)\].*$;\1;' <<< "${vcs_info_msg_0_}")
