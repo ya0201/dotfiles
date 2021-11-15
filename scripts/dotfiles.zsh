@@ -1,24 +1,25 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 echo "Deploying dotfiles ..."
 
 CWD=$(pwd)
-for f in * .*; do
-  [ "$f" = "." ] && continue
-  [ "$f" = ".." ] && continue
-  [ "$f" = ".git" ] && continue
-  [ "$f" = ".gitignore" ] && continue
-  [ "$f" = ".config" ] && continue
-  [ "$f" = ".ssh" ] && continue
+for f in ${(@f)"$(ls -a)"}; do
+  [[ $f = "." ]] && continue
+  [[ $f = ".." ]] && continue
+  [[ $f = ".git" ]] && continue
+  [[ $f = ".gitignore" ]] && continue
+  [[ $f = ".github" ]] && continue
+  [[ $f = ".config" ]] && continue
+  [[ $f = ".ssh" ]] && continue
   [[ $f = *.md ]] && continue
   [[ $f = *.sh ]] && continue
-  [[ $f = *.bash ]] && continue
   [[ $f = *.txt ]] && continue
-  [[ $f = 30-touchpad.conf ]] && continue
+  [[ $f = *.plist ]] && continue
   [[ $f = scripts ]] && continue
+  [[ $f = legacy ]] && continue
   [[ $f = Makefile ]] && continue
 
-  if [ -e $HOME/$f ]; then
+  if [[ -e $HOME/$f ]]; then
     echo "Cannot deploy $f: $HOME/$f already exists"
   else
     ln -s $CWD/$f $HOME/$f
@@ -28,10 +29,10 @@ done
 cd .config
 CWD=$(pwd)
 mkdir -p $HOME/.config
-for f in * .*; do
-  [ "$f" = "." ] && continue
-  [ "$f" = ".." ] && continue
-  if [ -e $HOME/.config/$f ]; then
+for f in ${(@f)"$(ls -a)"}; do
+  [[ $f = "." ]] && continue
+  [[ $f = ".." ]] && continue
+  if [[ -e $HOME/.config/$f ]]; then
     echo "Cannot deploy $f: $HOME/.config/$f already exists"
   else
     ln -s $CWD/$f $HOME/.config/$f
