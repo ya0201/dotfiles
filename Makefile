@@ -1,10 +1,15 @@
 CURRENT_DIR = $(shell pwd)
+ARCH := $(shell uname)
 
-.PHONY: pwd
-pwd:
-	@echo $(CURRENT_DIR)
+.PHONY: install _install zsh-plugins
 
-.PHONY: install-zsh-plugins
-install-zsh-plugins:
+install: _install
+
+_install:
+ifeq ($(ARCH),Darwin)
+	$(CURRENT_DIR)/scripts/macos.zsh
+endif
+
+zsh-plugins:
 	@. $(CURRENT_DIR)/.zshenv
 	@$(CURRENT_DIR)/scripts/install-zsh-plugins.zsh 'install'

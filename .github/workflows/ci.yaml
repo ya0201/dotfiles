@@ -1,0 +1,26 @@
+name: 'Test'
+
+on:
+  # push:
+  #   branches:
+  #   - master
+  pull_request:
+
+jobs:
+  macos:
+    name: 'macos'
+    runs-on: macos-latest
+    environment: staging
+
+    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+    defaults:
+      run:
+        shell: zsh
+
+    steps:
+    # Checkout the repository to the GitHub Actions runner
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Install
+      run: make install
