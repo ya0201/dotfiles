@@ -1,4 +1,4 @@
-name: 'Test'
+name: 'macos'
 
 on:
   # push:
@@ -7,12 +7,12 @@ on:
   pull_request:
 
 jobs:
-  macos:
-    name: 'macos'
+  test:
+    name: 'test'
     runs-on: macos-latest
     environment: staging
 
-    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+    # Use the zsh shell
     defaults:
       run:
         shell: zsh {0}
