@@ -1,6 +1,10 @@
 #!/usr/bin/env zsh
 
 DEBUG_ENABLED=${DEBUG_ENABLED:-'true'}
+debug_log() {
+  [[ $DEBUG_ENABLED = 'true' ]] && echo "$@" >&2
+}
+
 echo "Deploying dotfiles ..."
 
 CWD=$(pwd)
@@ -23,7 +27,7 @@ for f in ${(@f)"$(ls -a)"}; do
   if [[ -e $HOME/$f ]]; then
     echo "Cannot deploy $f: $HOME/$f already exists"
   else
-    [[ $DEBUG_ENABLED = 'true' ]] && echo "ln -s $CWD/$f $HOME/$f" >&2
+    debug_log "ln -s $CWD/$f $HOME/$f"
     ln -s $CWD/$f $HOME/$f
   fi
 done
@@ -37,7 +41,7 @@ for f in ${(@f)"$(ls -a)"}; do
   if [[ -e $HOME/.config/$f ]]; then
     echo "Cannot deploy $f: $HOME/.config/$f already exists"
   else
-    [[ $DEBUG_ENABLED = 'true' ]] && echo "ln -s $CWD/$f $HOME/.config/$f" >&2
+    debug_log "ln -s $CWD/$f $HOME/.config/$f"
     ln -s $CWD/$f $HOME/.config/$f
   fi
 done
@@ -49,7 +53,7 @@ mkdir -p $HOME/.ssh
 if [[ -e $HOME/.ssh/config ]]; then
   echo "Cannot deploy .ssh/config: $HOME/.ssh/config already exists"
 else
-  [[ $DEBUG_ENABLED = 'true' ]] && echo "ln -s $CWD/config $HOME/.ssh/config" >&2
+  debug_log "ln -s $CWD/config $HOME/.ssh/config"
   ln -s $CWD/config $HOME/.ssh/config
 fi
 cd ..
