@@ -1,5 +1,8 @@
 #!/usr/bin/env zsh
 
+# must be called in project root...
+pushd "$(cd $(dirname $0) &>/dev/null; pwd)/.."
+
 DEBUG_ENABLED=${DEBUG_ENABLED:-'true'}
 debug_log() {
   [[ $DEBUG_ENABLED = 'true' ]] && echo "$@" >&2
@@ -59,3 +62,4 @@ fi
 cd ..
 
 echo "Deploying done"
+popd
