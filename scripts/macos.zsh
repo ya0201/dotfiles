@@ -1,4 +1,5 @@
 #!/usr/bin/env zsh
+set -euo pipefail
 
 is_installed() {
   which "$@" &>/dev/null
