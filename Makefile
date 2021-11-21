@@ -3,15 +3,15 @@ ARCH := $(shell uname)
 
 .PHONY: install _install zsh-plugins
 
-install: _install
+install: _install zsh-plugins
 
 _install:
 ifeq ($(ARCH),Darwin)
 	$(CURRENT_DIR)/scripts/dotfiles.zsh
-	@echo ''
+	@echo
 	$(CURRENT_DIR)/scripts/macos.zsh
+	@echo
 endif
 
 zsh-plugins:
-	@. $(CURRENT_DIR)/files/.zshenv
-	@$(CURRENT_DIR)/scripts/install-zsh-plugins.zsh 'install'
+	$(CURRENT_DIR)/scripts/install-zsh-plugins.zsh
