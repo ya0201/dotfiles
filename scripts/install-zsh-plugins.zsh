@@ -30,7 +30,7 @@ function _suppress() {
 }
 
 function main() {
-  source $(cd $(dirname $0);pwd)/../.zshenv
+  source $(cd $(dirname $0);pwd)/../files/.zshenv
 
   local progname="$0"
   local subcmd="$1"

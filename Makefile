@@ -12,5 +12,5 @@ ifeq ($(ARCH),Darwin)
 endif
 
 zsh-plugins:
-	@. $(CURRENT_DIR)/.zshenv
+	@. $(CURRENT_DIR)/files/.zshenv
 	@$(CURRENT_DIR)/scripts/install-zsh-plugins.zsh 'install'
