@@ -23,5 +23,14 @@ fi
 echo 'Install some packages with Homebrew...'
 brew bundle --file ./brew/Brewfile
 echo 'Done.'
+echo ''
+
+echo 'Installing neovim package for python3 and vim plugins...'
+pip3 install neovim --user
+vim -c PlugInstall -c qa
+echo 'Done.'
+echo ''
+
+mkdir -p ~/GoogleDrive
 
 popd
