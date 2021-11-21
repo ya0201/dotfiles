@@ -27,7 +27,7 @@ echo ''
 
 echo 'Installing neovim package for python3 and vim plugins...'
 pip3 install neovim --user
-vim -c PlugInstall -c qa
+nvim -c PlugInstall -c qa
 echo 'Done.'
 echo ''
 
