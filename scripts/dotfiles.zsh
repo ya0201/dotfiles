@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
-# must be called in project root...
-pushd "$(cd $(dirname $0) &>/dev/null; pwd)/.."
+# must be work in files directory...
+pushd "$(cd $(dirname $0) &>/dev/null; pwd)/../files"
 
 DEBUG_ENABLED=${DEBUG_ENABLED:-'true'}
 debug_log() {
@@ -14,18 +14,11 @@ CWD=$(pwd)
 for f in ${(@f)"$(ls -a)"}; do
   [[ $f = "." ]] && continue
   [[ $f = ".." ]] && continue
-  [[ $f = ".git" ]] && continue
-  [[ $f = ".gitignore" ]] && continue
-  [[ $f = ".github" ]] && continue
   [[ $f = ".config" ]] && continue
   [[ $f = ".ssh" ]] && continue
   [[ $f = *.md ]] && continue
   [[ $f = *.sh ]] && continue
   [[ $f = *.txt ]] && continue
-  [[ $f = *.plist ]] && continue
-  [[ $f = scripts ]] && continue
-  [[ $f = legacy ]] && continue
-  [[ $f = Makefile ]] && continue
 
   if [[ -e $HOME/$f ]]; then
     echo "Cannot deploy $f: $HOME/$f already exists"
@@ -35,7 +28,7 @@ for f in ${(@f)"$(ls -a)"}; do
   fi
 done
 
-cd .config
+pushd .config
 CWD=$(pwd)
 mkdir -p $HOME/.config
 for f in ${(@f)"$(ls -a)"}; do
@@ -48,9 +41,9 @@ for f in ${(@f)"$(ls -a)"}; do
     ln -s $CWD/$f $HOME/.config/$f
   fi
 done
-cd ..
+popd
 
-cd .ssh
+pushd .ssh
 CWD=$(pwd)
 mkdir -p $HOME/.ssh
 if [[ -e $HOME/.ssh/config ]]; then
@@ -59,7 +52,7 @@ else
   debug_log "ln -s $CWD/config $HOME/.ssh/config"
   ln -s $CWD/config $HOME/.ssh/config
 fi
-cd ..
+popd
 
 echo "Deploying done"
 popd

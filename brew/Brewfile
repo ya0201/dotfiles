@@ -1,0 +1,31 @@
+cask_args appdir: '/Applications'
+
+tap "hashicorp/tap"
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/core"
+
+# brew
+brew 'fzf'
+brew "ghq"
+brew 'jq'
+brew 'node'
+brew "neovim"
+brew 'peco'
+brew 'pwgen'
+brew 'python-yq'
+brew "terraform"
+brew "tmux"
+brew 'tree'
+brew 'wget'
+brew "hashicorp/tap/terraform-ls"
+
+# cask
+cask 'alfred'
+cask 'contexts'
+cask 'google-chrome'
+cask 'google-japanese-ime'
+cask "iterm2"
+cask 'karabiner-elements'
+cask "rectangle"
+cask 'vivaldi'

@@ -1,10 +1,5 @@
 cask_args appdir: '/Applications'
 
-# brew
-brew 'mas'
-
 # cask
 cask 'google-backup-and-sync'
-
-# mas kakin
-mas 'Magnet', id: 441258766
+cask "google-cloud-sdk"
