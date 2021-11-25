@@ -90,22 +90,28 @@ autoload -Uz vcs_info
 autoload -Uz colors
 colors
 
-# to show the number of suspended vim
-function _vim_jobs () {
-  unset -f _vim_jobs
-  function _vim_jobs() {
-    VIM_JOBS=$(jobs | awk '{ print $4 }' | grep vim | wc -l | xargs)
-  }
-}
-add-zsh-hook precmd _vim_jobs
-
 # 一般ユーザ時
-top_left='%{${fg[green]}%}[%M:%~](suspended vim: ${VIM_JOBS})'
+top_left='%{${fg[green]}%}[%M:%~]'
 bottom_left="%{${fg[cyan]}%}%n $ %{${reset_color}%}"
 # rootユーザ時(太字にし、アンダーバーをつける)
 if [ ${UID} -eq 0 ]; then
   bottom_left="%B%U${bottom_left}%u%b"
 fi
+
+# qwer-ps1
+## initialize
+QWER_PS1_DIR=${QWER_PS1_DIR:-${HOME}/.qwer-ps1}
+[[ ! -d ${QWER_PS1_DIR} ]] && git clone https://github.com/ya0201/qwer-ps1 ${HOME}/.qwer-ps1
+if ! which qp1 &>/dev/null; then
+  source ${QWER_PS1_DIR}/qwer-ps1.zsh
+fi
+eval "$(qwer-ps1 init)"
+
+## load plugins
+if ! qwer-ps1 plugin is-installed suspended-vim; then
+  qp1 p a suspended-vim https://github.com/ya0201/qwer-ps1-suspended-vim
+fi
+top_left=${top_left}'$(qp1 -b "()" -c green s suspended-vim)'
 
 # prompt
 PROMPT="${top_left}
