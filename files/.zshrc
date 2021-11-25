@@ -418,6 +418,12 @@ function defer_loading_zsh_plugins() {
   fi
 }
 
+# load asdf if exists
+if [[ -f $HOME/.asdf/asdf.sh ]]; then
+  source $HOME/.asdf/asdf.sh
+  export FPATH=${HOME}/.asdf/completions:${FPATH}
+fi
+
 # z wo peco tte bakusoku cd
 # ref: https://qiita.com/maxmellon/items/23325c22581e9187639e
 check_is_installed z peco
