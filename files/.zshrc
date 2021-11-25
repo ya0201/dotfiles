@@ -108,10 +108,10 @@ fi
 eval "$(qwer-ps1 init)"
 
 ## load plugins
-if ! qwer-ps1 plugin is-installed suspended-vim; then
-  qp1 p a suspended-vim https://github.com/ya0201/qwer-ps1-suspended-vim
+if ! qwer-ps1 plugin is-installed suspended-vims; then
+  qp1 p a suspended-vims https://github.com/ya0201/qwer-ps1-suspended-vims
 fi
-top_left=${top_left}'$(qp1 -b "()" -c green s suspended-vim)'
+top_left=${top_left}'$(qp1 -b "()" -c green s suspended-vims)'
 
 # prompt
 PROMPT="${top_left}
