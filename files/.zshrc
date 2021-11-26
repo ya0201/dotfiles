@@ -111,6 +111,9 @@ eval "$(qwer-ps1 init)"
 if ! qwer-ps1 plugin is-installed suspended-vims; then
   qp1 p a suspended-vims https://github.com/ya0201/qwer-ps1-suspended-vims
 fi
+if ! qwer-ps1 plugin is-installed oscloud; then
+  qp1 p a oscloud https://github.com/ya0201/qwer-ps1-oscloud
+fi
 top_left=${top_left}'$(qp1 -b "()" -c green s suspended-vims)'
 
 # prompt
