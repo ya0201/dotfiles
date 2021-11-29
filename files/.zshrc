@@ -85,14 +85,15 @@ if [[ -n $_BREW_PREFIX ]]; then
 fi
 
 ### Prompt ###
+setopt prompt_subst
 autoload -Uz add-zsh-hook
 autoload -Uz vcs_info
 autoload -Uz colors
 colors
 
 # 一般ユーザ時
-top_left='%{${fg[green]}%}[%M:%~]'
-bottom_left="%{${fg[cyan]}%}%n $ %{${reset_color}%}"
+top_left='%F{green}[%M:%~]%f'
+bottom_left="%F{cyan}%n $ %f"
 # rootユーザ時(太字にし、アンダーバーをつける)
 if [ ${UID} -eq 0 ]; then
   bottom_left="%B%U${bottom_left}%u%b"
@@ -121,7 +122,6 @@ PROMPT="${top_left}
 ${bottom_left}"
 
 # right-prompt shows git information
-setopt prompt_subst
 zstyle ':vcs_info:git:*' check-for-changes true
 zstyle ':vcs_info:git:*' stagedstr "%F{yellow}!"
 zstyle ':vcs_info:git:*' unstagedstr "%F{red}+"
