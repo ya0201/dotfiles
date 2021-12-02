@@ -108,33 +108,27 @@ if ! which qp1 &>/dev/null; then
 fi
 eval "$(qwer-ps1 init)"
 
-## load plugins
+## qwer-ps1 plugins
 if ! qwer-ps1 plugin is-installed suspended-vims; then
   qp1 p a suspended-vims https://github.com/ya0201/qwer-ps1-suspended-vims
 fi
 if ! qwer-ps1 plugin is-installed oscloud; then
   qp1 p a oscloud https://github.com/ya0201/qwer-ps1-oscloud
 fi
+if ! qwer-ps1 plugin is-installed gitinfo; then
+  qp1 p a gitinfo https://github.com/ya0201/qwer-ps1-gitinfo
+fi
 top_left=${top_left}'$(qp1 -b "()" -c green s suspended-vims)'
+if qwer-ps1 plugin is-installed rse; then
+  top_left=${top_left}'$(qwer-ps1 -b "" -c white show-current rse)'
+fi
 
 # prompt
 PROMPT="${top_left}
 ${bottom_left}"
 
 # right-prompt shows git information
-zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:git:*' stagedstr "%F{yellow}!"
-zstyle ':vcs_info:git:*' unstagedstr "%F{red}+"
-zstyle ':vcs_info:*' formats "%F{green}%c%u[%b]%f"
-zstyle ':vcs_info:*' actionformats '[%b|%a]'
-function vcs_info_wrapper() {
-  unset -f vcs_info_wrapper
-  function vcs_info_wrapper() {
-    vcs_info
-  }
-}
-add-zsh-hook precmd vcs_info_wrapper
-RPROMPT='${vcs_info_msg_0_}'
+RPROMPT='$(qp1 -b "" s gitinfo)'
 
 
 # ------------------------------
@@ -155,7 +149,6 @@ alias ga='git add'
 alias ga.='git add .'
 alias gc='git commit'
 alias gcm='git commit -m'
-# alias gch='git checkout'
 alias gsh='git switch'
 alias gsc='git switch -c'
 alias gr='git restore'
@@ -163,6 +156,7 @@ alias gd='git diff'
 alias glog='git log'
 alias gpull='git pull'
 alias gpush='git push'
+alias gg='ghq get'
 alias gl='gcloud'
 alias tf='terraform'
 
