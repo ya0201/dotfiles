@@ -159,6 +159,7 @@ alias gpush='git push'
 alias gg='ghq get'
 alias gl='gcloud'
 alias tf='terraform'
+alias snk='ssh -o StrictHostKeyChecking=no'
 
 function gpsuo() {
   local branch=$(sed -e 's;^.*\[\(.*\)\].*$;\1;' <<< "${vcs_info_msg_0_}")
