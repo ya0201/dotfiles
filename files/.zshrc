@@ -583,7 +583,7 @@ if which ghq &> /dev/null; then
 fi
 
 # snippet to read credential from stdin without logging plain text of credential to .zsh_history
-function read_cred() {
+function read-cred() {
   local credname="$1"
 
   echo -n "Please input ${credname}: "
