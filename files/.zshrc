@@ -161,6 +161,22 @@ alias gl='gcloud'
 alias tf='terraform'
 alias snk='ssh -o StrictHostKeyChecking=no'
 
+function yaml2json() {
+  if which ruby >/dev/null 2>&1; then
+    ruby -ryaml -rjson -e 'puts JSON.dump(YAML.load(ARGF))'
+  else
+    python3 -c 'import sys, yaml, json; print(json.dumps(yaml.safe_load(sys.stdin)))'
+  fi
+}
+
+function json2yaml() {
+  if which ruby >/dev/null 2>&1; then
+    ruby -ryaml -rjson -e 'puts YAML.dump(JSON.load(ARGF))'
+  else
+    python3 -c "import sys, yaml, json; print(yaml.dump(json.load(sys.stdin)))"
+  fi
+}
+
 function clm() {
   local clmnum="$1"
   cut -f " " -d "$clmnum"
