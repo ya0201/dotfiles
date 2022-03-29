@@ -161,6 +161,11 @@ alias gl='gcloud'
 alias tf='terraform'
 alias snk='ssh -o StrictHostKeyChecking=no'
 
+function clm() {
+  local clmnum="$1"
+  cut -f " " -d "$clmnum"
+}
+
 function gpsuo() {
   local branch=$(sed -e 's;^.*\[\(.*\)\].*$;\1;' <<< "${vcs_info_msg_0_}")
   if [[ -n "$branch" ]]; then
