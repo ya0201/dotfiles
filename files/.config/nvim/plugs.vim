@@ -31,6 +31,7 @@ call plug#begin(s:plugged_dir)
   Plug 'rust-lang/rust.vim'
   Plug 'Shougo/vimproc.vim', {'do' : 'make'}
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'bellflower2015/vim-syntax-tyranoscript'
 
   " flutter
   Plug 'dart-lang/dart-vim-plugin'
@@ -53,6 +54,7 @@ augroup nerdtree_autoclose
   autocmd!
   autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 augroup END
+let g:NERDCustomDelimiters = { 'tyranoscript': { 'left': ';' } }
 
 " Nerd_Commenter
 let g:NERDCreateDefaultMappings = 0
