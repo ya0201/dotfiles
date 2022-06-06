@@ -90,5 +90,8 @@ autocmd BufRead,BufNewFile *.md set filetype=markdown
 autocmd BufRead,BufNewFile *.slide set filetype=markdown
 autocmd BufRead,BufNewFile *.toml set filetype=toml
 
+" disable folding for tyranoscript file
+autocmd FileType tyranoscript set nofoldable
+
 " load settings for markdown file
 autocmd FileType markdown source <sfile>:h/markdown.vim
