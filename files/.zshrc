@@ -160,6 +160,7 @@ alias gg='ghq get'
 alias gl='gcloud'
 alias tf='terraform'
 alias snk='ssh -o StrictHostKeyChecking=no'
+alias gg='ghq get'
 
 function yaml2json() {
   if which ruby >/dev/null 2>&1; then
