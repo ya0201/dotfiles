@@ -19,6 +19,7 @@ brew "tmux"
 brew 'tree'
 brew 'wget'
 brew "hashicorp/tap/terraform-ls"
+brew 'ripgrep'
 
 # cask
 cask 'alfred'

@@ -523,7 +523,11 @@ vim-grep-peco () {
     return 1
   fi
 
-  local selected_line=$(grep -inr -- "$@" | peco | awk -F: '{print "-c", $2, $1}')
+  if check_is_installed 'rg'; then
+    local selected_line=$(rg -in --hidden -- "$@" | peco | awk -F: '{print "-c", $2, $1}')
+  else
+    local selected_line=$(grep -inr -- "$@" | peco | awk -F: '{print "-c", $2, $1}')
+  fi
   if [[ -n $selected_line ]]; then
     vim ${=selected_line}
   fi
