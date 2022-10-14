@@ -1,5 +1,5 @@
 # for profiling
-zmodload zsh/zprof && zprof
+# zmodload zsh/zprof && zprof
 
 source /etc/profile
 # export ANT_HOME="/usr/local/bin/ant/"
