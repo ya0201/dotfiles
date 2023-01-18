@@ -32,6 +32,7 @@ call plug#begin(s:plugged_dir)
   Plug 'Shougo/vimproc.vim', {'do' : 'make'}
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'bellflower2015/vim-syntax-tyranoscript'
+  Plug 'jjo/vim-cue'
 
   " flutter
   Plug 'dart-lang/dart-vim-plugin'

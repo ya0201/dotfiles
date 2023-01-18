@@ -179,6 +179,10 @@ function json2yaml() {
   fi
 }
 
+function remove_kube_metadata() {
+  yaml2json | jq '. | del(.status) | del(.metadata.annotations["kubectl.kubernetes.io/last-applied-configuration"]) | del(.metadata.creationTimestamp) | del(.metadata.generation) | del(.metadata.resourceVersion) | del(.metadata.uid)' | json2yaml
+}
+
 function clm() {
   local clmnum="$1"
   cut -f " " -d "$clmnum"
