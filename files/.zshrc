@@ -173,7 +173,7 @@ function yaml2json() {
 
 function json2yaml() {
   if which ruby >/dev/null 2>&1; then
-    ruby -ryaml -rjson -e 'puts YAML.dump(JSON.load(ARGF))'
+    ruby -ryaml -rjson -e 'puts YAML.dump(JSON.load(ARGF))' | tail -n +2
   else
     python3 -c "import sys, yaml, json; print(yaml.dump(json.load(sys.stdin)))"
   fi
