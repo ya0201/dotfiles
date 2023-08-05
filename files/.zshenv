@@ -81,6 +81,8 @@ if [ -z "$TILDIR" ]; then
   export TILDIR="${HOME}/til"
 fi
 
+# progate cli
+export PATH=$HOME/.progate/bin:$PATH
 
 # for newer clang
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
