@@ -423,7 +423,7 @@ function llap() {
   return $?
 }
 function fifp() {
-  command-peco 'find . -type f 2>/dev/null | grep -v "./.git/"'
+  command-peco 'find . -type f 2>/dev/null -not \( -path */.git/* -o -path */node_modules/* \)'
   return $?
 }
 
