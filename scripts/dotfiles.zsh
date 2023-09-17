@@ -54,5 +54,16 @@ else
 fi
 popd
 
+# vscode
+pushd vscode
+CWD=$(pwd)
+dst="${HOME}/Library/Application Support/Code/User"
+mkdir -p "${dst}"
+for f in $(find . -type f -name '*.json'); do
+  debug_log "ln -s \"${CWD}/${f##*/}\" \"${dst}/${f##*/}\""
+  ln -s "${CWD}/${f##*/}" "${dst}/${f##*/}"
+done
+popd
+
 echo "Deployment of dotfiles done."
 popd
