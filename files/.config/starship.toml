@@ -2,10 +2,11 @@
 add_newline = true
 
 format = """\
+  $env_var\
   $hostname\
   $directory\
-  $custom\
   $line_break\
+  $custom\
   $jobs\
   $battery\
   $time\
@@ -22,6 +23,13 @@ right_format = """\
 
 [directory]
 style = 'cyan'
+truncation_length = 7
+truncate_to_repo = false
+
+[env_var.OS_CLOUD]
+style = 'dimmed red'
+variable = 'OS_CLOUD'
+format = "[\\[$env_value\\]]($style) \n"
 
 [hostname]
 ssh_only = false
