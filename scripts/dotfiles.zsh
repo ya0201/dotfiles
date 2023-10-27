@@ -65,5 +65,8 @@ for f in $(find . -type f -name '*.json'); do
 done
 popd
 
+# iTerm2
+cp -f .config/com.googlecode.iterm2.plist ${HOME}/Library/Preferences/
+
 echo "Deployment of dotfiles done."
 popd
