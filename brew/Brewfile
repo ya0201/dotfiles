@@ -4,6 +4,7 @@ tap "hashicorp/tap"
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/core"
+tap "homebrew/cask-fonts"
 
 # brew
 brew 'fzf'
@@ -20,6 +21,7 @@ brew 'tree'
 brew 'wget'
 brew "hashicorp/tap/terraform-ls"
 brew 'ripgrep'
+brew 'font-hack-nerd-font'
 
 # cask
 cask 'alfred'
