@@ -27,7 +27,8 @@ truncation_length = 7
 truncate_to_repo = false
 
 [env_var.OS_CLOUD]
-style = 'dimmed red'
+# https://www.color-sample.com/colors/721c06/
+style = '#721C06'
 variable = 'OS_CLOUD'
 format = "[\\[$env_value\\]]($style) \n"
 
