@@ -101,34 +101,34 @@ fi
 
 # qwer-ps1
 ## initialize
-QWER_PS1_DIR=${QWER_PS1_DIR:-${HOME}/.qwer-ps1}
-[[ ! -d ${QWER_PS1_DIR} ]] && git clone https://github.com/ya0201/qwer-ps1 ${HOME}/.qwer-ps1
-if ! which qp1 &>/dev/null; then
-  source ${QWER_PS1_DIR}/qwer-ps1.zsh
-fi
-eval "$(qwer-ps1 init)"
-
-## qwer-ps1 plugins
-if ! qwer-ps1 plugin is-installed suspended-vims; then
-  qp1 p a suspended-vims https://github.com/ya0201/qwer-ps1-suspended-vims
-fi
-if ! qwer-ps1 plugin is-installed oscloud; then
-  qp1 p a oscloud https://github.com/ya0201/qwer-ps1-oscloud
-fi
-if ! qwer-ps1 plugin is-installed gitinfo; then
-  qp1 p a gitinfo https://github.com/ya0201/qwer-ps1-gitinfo
-fi
-top_left=${top_left}'$(qp1 -b "()" -c green s suspended-vims)'
-if qwer-ps1 plugin is-installed rse; then
-  top_left=${top_left}'$(qwer-ps1 -b "" -c white show-current rse)'
-fi
+# QWER_PS1_DIR=${QWER_PS1_DIR:-${HOME}/.qwer-ps1}
+# [[ ! -d ${QWER_PS1_DIR} ]] && git clone https://github.com/ya0201/qwer-ps1 ${HOME}/.qwer-ps1
+# if ! which qp1 &>/dev/null; then
+#   source ${QWER_PS1_DIR}/qwer-ps1.zsh
+# fi
+# eval "$(qwer-ps1 init)"
+# 
+# ## qwer-ps1 plugins
+# if ! qwer-ps1 plugin is-installed suspended-vims; then
+#   qp1 p a suspended-vims https://github.com/ya0201/qwer-ps1-suspended-vims
+# fi
+# if ! qwer-ps1 plugin is-installed oscloud; then
+#   qp1 p a oscloud https://github.com/ya0201/qwer-ps1-oscloud
+# fi
+# if ! qwer-ps1 plugin is-installed gitinfo; then
+#   qp1 p a gitinfo https://github.com/ya0201/qwer-ps1-gitinfo
+# fi
+# top_left=${top_left}'$(qp1 -b "()" -c green s suspended-vims)'
+# if qwer-ps1 plugin is-installed rse; then
+#   top_left=${top_left}'$(qwer-ps1 -b "" -c white show-current rse)'
+# fi
 
 # prompt
 PROMPT="${top_left}
 ${bottom_left}"
 
 # right-prompt shows git information
-RPROMPT='$(qp1 -b "" s gitinfo)'
+# RPROMPT='$(qp1 -b "" s gitinfo)'
 
 
 # ------------------------------
