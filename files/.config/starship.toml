@@ -3,13 +3,13 @@ add_newline = true
 
 format = """\
   $env_var\
+  $kubernetes\
+  $line_break\
   $hostname\
   $directory\
   $line_break\
   $custom\
   $jobs\
-  $battery\
-  $time\
   $username\
   $character\
   """
@@ -23,7 +23,7 @@ right_format = """\
 
 [directory]
 style = 'cyan'
-truncation_length = 7
+truncation_length = 10
 truncate_to_repo = false
 
 [env_var.OS_CLOUD]
@@ -32,9 +32,19 @@ style = '#721C06'
 variable = 'OS_CLOUD'
 format = "[\\[$env_value\\]]($style) \n"
 
+[env_var.CURRENT_BP_CONTEXT]
+# https://www.color-sample.com/colors/065b70/
+style = '#065B70'
+variable = 'CURRENT_BP_CONTEXT'
+format = "[\\[bp ctx: $env_value\\]]($style)"
+
 [hostname]
 ssh_only = false
 style = 'green'
+
+[kubernetes]
+format = '[\[⛵ $context\]](dimmed green) '
+disabled = false
 
 [username]
 show_always = true
