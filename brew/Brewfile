@@ -1,27 +1,26 @@
 cask_args appdir: '/Applications'
 
-tap "hashicorp/tap"
-tap "homebrew/bundle"
-tap "homebrew/cask"
-tap "homebrew/core"
-tap "homebrew/cask-fonts"
+tap 'hashicorp/tap'
+tap 'homebrew/bundle'
+tap 'homebrew/cask'
+tap 'homebrew/core'
+tap 'homebrew/cask-fonts'
 
 # brew
 brew 'fzf'
 brew "ghq"
 brew 'jq'
 brew 'node'
-brew "neovim"
+brew 'neovim'
 brew 'peco'
 brew 'pwgen'
 brew 'python-yq'
-brew "terraform"
-brew "tmux"
+brew 'terraform'
+brew 'tmux'
 brew 'tree'
 brew 'wget'
-brew "hashicorp/tap/terraform-ls"
+brew 'hashicorp/tap/terraform-ls'
 brew 'ripgrep'
-brew 'homebrew/cask-fonts/font-hack-nerd-font'
 brew 'starship'
 
 # cask
@@ -29,8 +28,12 @@ cask 'alfred'
 cask 'contexts'
 cask 'google-chrome'
 cask 'google-japanese-ime'
-cask "iterm2"
+cask 'iterm2'
 cask 'karabiner-elements'
-cask "rectangle"
+cask 'rectangle'
 cask 'vivaldi'
 cask 'visual-studio-code'
+cask 'font-hack-nerd-font'
+
+# vscode
+vscode "MS-CEINTL.vscode-language-pack-ja"
