@@ -32,11 +32,6 @@ nvim -c PlugInstall -c qa
 echo 'Done.'
 echo ''
 
-echo 'Installing some vscode extensions...'
-cat ./files/vscode/extensions| xargs -I{} code --install-extension {}
-echo 'Done.'
-echo ''
-
 mkdir -p ~/GoogleDrive
 
 popd

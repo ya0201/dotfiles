@@ -8,7 +8,12 @@ if [[ ! -f $ZPLUG_HOME/init.zsh ]]; then
   echo; curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 fi
 
-[[ -f $ZPLUG_HOME/init.zsh ]] && source $ZPLUG_HOME/init.zsh || echo 'why?'
+if [[ -f $ZPLUG_HOME/init.zsh ]]; then
+  source $ZPLUG_HOME/init.zsh
+else
+  echo 'Error: Could not install zplug correctly.'
+  exit 1
+fi
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "zsh-users/zsh-completions"
 zplug "rupa/z"
