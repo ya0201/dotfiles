@@ -66,7 +66,8 @@ done
 popd
 
 # iTerm2
-cp -f .config/com.googlecode.iterm2.plist ${HOME}/Library/Preferences/
+mkdir -p ${HOME}/Library/Preferences
+ln $(pwd)/.config/com.googlecode.iterm2.plist ${HOME}/Library/Preferences/com.googlecode.iterm2.plist
 
 echo "Deployment of dotfiles done."
 popd
