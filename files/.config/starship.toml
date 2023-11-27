@@ -38,6 +38,9 @@ style = '#065B70'
 variable = 'CURRENT_BP_CONTEXT'
 format = "[\\[bp ctx: $env_value\\]]($style)"
 
+[git_branch]
+format = '[$symbol$branch(:$remote_branch)]($style) '
+
 [hostname]
 ssh_only = false
 style = 'green'
