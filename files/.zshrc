@@ -16,13 +16,13 @@ disable r
 
 ### Complement ###  
 # basic complement setting
-autoload -U compinit
+# autoload -U compinit
 # https://htr3n.github.io/2018/07/faster-zsh/
-if [ $(date +'%j') != $(/usr/bin/stat -f '%Sm' -t '%j' ${ZDOTDIR:-$HOME}/.zcompdump) ]; then
-  compinit
-else
-  compinit -C
-fi
+# if [ $(date +'%j') != $(/usr/bin/stat -f '%Sm' -t '%j' ${ZDOTDIR:-$HOME}/.zcompdump) ]; then
+#   compinit
+# else
+#   compinit -C
+# fi
 
 ### History ###
 HISTSIZE=10000
@@ -395,20 +395,7 @@ if [[ ! -f $XDG_DATA_HOME/tmux/plugins/tpm/tpm && ! -f $ticc ]]; then
 fi
 
 # load zsh plugins
-ZPLUG_REPOS=${ZPLUG_HOME}/repos
-if [[ -f $ZPLUG_REPOS/rupa/z/z.sh ]]; then
-  # load z
-  source $ZPLUG_REPOS/rupa/z/z.sh
-fi
-if [[ -d $ZPLUG_REPOS/zsh-users/zsh-completions/src ]]; then
-  export FPATH=${ZPLUG_REPOS}/zsh-users/zsh-completions/src:${FPATH}
-fi
-function defer_loading_zsh_plugins() {
-  if [[ -f $ZPLUG_REPOS/zsh-users/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
-    # load zsh-syntax-highlighting
-    source $ZPLUG_REPOS/zsh-users/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-  fi
-}
+eval "$(sheldon source)"
 
 # load asdf if exists
 if [[ -f $HOME/.asdf/asdf.sh ]]; then
@@ -589,9 +576,6 @@ DOTFILES_WORKING_DIR="${HOME}/dotfiles-working"
 if [[ -d ${DOTFILES_WORKING_DIR} ]]; then
   source ${DOTFILES_WORKING_DIR}/.zsh
 fi
-
-# defer loading of zsh plugins
-defer_loading_zsh_plugins
 
 
 # for profiling
