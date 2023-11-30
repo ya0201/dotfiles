@@ -16,13 +16,13 @@ disable r
 
 ### Complement ###  
 # basic complement setting
-# autoload -U compinit
+autoload -U compinit
 # https://htr3n.github.io/2018/07/faster-zsh/
-# if [ $(date +'%j') != $(/usr/bin/stat -f '%Sm' -t '%j' ${ZDOTDIR:-$HOME}/.zcompdump) ]; then
-#   compinit
-# else
-#   compinit -C
-# fi
+if [ $(date +'%j') != $(/usr/bin/stat -f '%Sm' -t '%j' ${ZDOTDIR:-$HOME}/.zcompdump) ]; then
+  compinit
+else
+  compinit -C
+fi
 
 ### History ###
 HISTSIZE=10000
