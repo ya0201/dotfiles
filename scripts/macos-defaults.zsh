@@ -44,6 +44,10 @@ defaults write com.apple.CrashReporter DialogType none
 # 先頭文字を自動で大文字化するのを無効
 defaults write -g NSAutomaticCapitalizationEnabled -bool false
 
+# dock格納時のアニメーションをスケールにする
+# https://macos-defaults.com/dock/mineffect.html
+defaults write com.apple.dock mineffect scale
+
 # 上記設定後は、Finder と Dock を再起動する
 killall Finder
 killall Dock
