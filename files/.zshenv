@@ -86,10 +86,3 @@ export PATH=$HOME/.progate/bin:$PATH
 
 # for newer clang
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
-
-# zplug
-export ZPLUG_HOME="${HOME}/.zplug"
-export ZSH_PLUGINS_NO_INSTALL=$XDG_CACHE_HOME/.zsh_plugins_no_install
-
-# qwer-ps1
-export QWER_PS1_LAZY_LOADING='true'
