@@ -86,3 +86,5 @@ export PATH=$HOME/.progate/bin:$PATH
 
 # for newer clang
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+
+export DOCKER_DEFAULT_PLATFORM=linux/amd64
