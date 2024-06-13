@@ -23,6 +23,7 @@ brew 'hashicorp/tap/terraform-ls'
 brew 'ripgrep'
 brew 'starship'
 brew 'sheldon'
+brew 'rust'
 
 # cask
 cask 'contexts'

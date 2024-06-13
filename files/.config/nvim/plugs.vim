@@ -45,6 +45,9 @@ call plug#begin(s:plugged_dir)
   Plug 'ctrlpvim/ctrlp.vim'
   Plug 'ya0201/ctrlp-history'
   Plug 't9md/vim-textmanip'
+
+  " Copilot
+  Plug 'github/copilot.vim'
 call plug#end()
 
 
