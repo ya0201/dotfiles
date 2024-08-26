@@ -434,9 +434,9 @@ fi
 check_is_installed vim peco
 if [ $? -eq 0 ]; then
   function vim-peco-edit {
-    local selected=$(fifp)
+    local selected="$(fifp)"
     if [ -n "$selected" ]; then
-      BUFFER+="vim $selected"
+      BUFFER+="vim \"$selected\""
       zle accept-line
     else
       return 1
