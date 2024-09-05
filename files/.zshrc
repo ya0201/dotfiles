@@ -137,11 +137,11 @@ function json2yaml() {
 }
 
 function remove_kube_metadata() {
-  yaml2json | jq '. | del(.status) | del(.metadata.annotations["kubectl.kubernetes.io/last-applied-configuration"]) | del(.metadata.creationTimestamp) | del(.metadata.generation) | del(.metadata.resourceVersion) | del(.metadata.uid)' | json2yaml
+  yaml2json | jq '. | del(.status) | del(.metadata.managedFields) | del(.metadata.annotations["kubectl.kubernetes.io/last-applied-configuration"]) | del(.metadata.creationTimestamp) | del(.metadata.generation) | del(.metadata.resourceVersion) | del(.metadata.uid)' | json2yaml
 }
 
 function remove_kube_metadata_with_status() {
-  yaml2json | jq '. | del(.metadata.annotations["kubectl.kubernetes.io/last-applied-configuration"]) | del(.metadata.creationTimestamp) | del(.metadata.generation) | del(.metadata.resourceVersion) | del(.metadata.uid)' | json2yaml
+  yaml2json | jq '. | del(.metadata.managedFields) | del(.metadata.annotations["kubectl.kubernetes.io/last-applied-configuration"]) | del(.metadata.creationTimestamp) | del(.metadata.generation) | del(.metadata.resourceVersion) | del(.metadata.uid)' | json2yaml
 }
 
 function clm() {
