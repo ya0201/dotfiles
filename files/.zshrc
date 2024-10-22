@@ -571,6 +571,18 @@ function read-cred() {
   echo ''
 }
 
+function continue?() {
+  echo -n "Continue? [Y/n] "
+  read input
+  echo
+
+  if [[ $input == "n" ]]; then
+    return 1
+  else
+    return 0
+  fi
+}
+
 # load dotfiles for work
 DOTFILES_WORKING_DIR="${HOME}/dotfiles-working"
 if [[ -d ${DOTFILES_WORKING_DIR} ]]; then
