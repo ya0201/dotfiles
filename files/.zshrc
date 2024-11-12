@@ -116,9 +116,31 @@ alias gpush='git push'
 alias gg='ghq get'
 alias gl='gcloud'
 alias tf='terraform'
-alias snk='ssh -o StrictHostKeyChecking=no'
+# alias snk='ssh -o StrictHostKeyChecking=no'
 alias gg='ghq get'
 alias ggrep='git grep'
+
+function snk() {
+  local target="$1"
+  # ssh -o StrictHostKeyChecking=no $target 'bash --rcfile <(echo "read-cred() { local credname=\\"\\$1\\"; echo -n \\"Please input \\$credname: \\"; read -s \\$credname; export \\$credname; echo \\"\\"; }") -i'
+  # ssh -o StrictHostKeyChecking=no -t $target 'echo "read-cred() { local credname=\\"\\$1\\"; echo -n \\"Please input \\$credname: \\"; read -s \\$credname; export \\$credname; echo \\"\\"; }" >> ${HOME}/.bashrc && bash --login'
+  ssh -o StrictHostKeyChecking=no -t "$target" <<'EOC'
+if [[ -z $(cat ~/.bashrc | grep 'read-cred') ]]; then
+cat <<'EOS' >> ~/.bashrc
+function read-cred () {
+        local credname="$1"
+        echo -n "Please input ${credname}: "
+        read -s "$credname"
+        export "$credname"
+        echo ''
+}
+EOS
+else
+exit
+fi
+EOC
+  ssh -o StrictHostKeyChecking=no -t "$target"
+}
 
 function yaml2json() {
   if which ruby >/dev/null 2>&1; then
@@ -379,7 +401,7 @@ function llap() {
   return $?
 }
 function fifp() {
-  command-peco "find . -type f 2>/dev/null -not \( -path '*/.git/*' -o -path '*/node_modules/*' \)"
+  command-peco "find . -type f 2>/dev/null -not \( -path '*/.git/*' -o -path '*/node_modules/*' -o -path '*/.next/*' \)"
   return $?
 }
 
