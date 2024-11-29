@@ -36,6 +36,7 @@ cask 'vivaldi'
 cask 'visual-studio-code'
 cask 'font-hack-nerd-font'
 cask 'google-drive'
+cask 'drawio'
 
 # vscode
 vscode "MS-CEINTL.vscode-language-pack-ja"
