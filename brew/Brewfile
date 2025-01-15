@@ -25,7 +25,7 @@ brew 'sheldon'
 brew 'rust'
 
 # cask
-cask 'contexts'
+cask 'alt-tab'
 cask 'google-chrome'
 cask 'google-japanese-ime'
 cask 'iterm2'
