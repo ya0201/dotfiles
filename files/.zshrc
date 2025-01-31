@@ -119,6 +119,7 @@ alias tf='terraform'
 # alias snk='ssh -o StrictHostKeyChecking=no'
 alias gg='ghq get'
 alias ggrep='git grep'
+alias nl='nerdctl'
 
 function snk() {
   local target="$1"
