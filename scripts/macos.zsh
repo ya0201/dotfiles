@@ -5,7 +5,7 @@ set -euo pipefail
 pushd "$(cd $(dirname $0) &>/dev/null; pwd)/.."
 
 # initialize
-./scripts/common-initialization.zsh
+source ./scripts/common-initialization.zsh
 
 echo 'hello, macos!'
 echo 'Installing Homebrew...'
