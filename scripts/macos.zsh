@@ -27,7 +27,7 @@ echo ''
 
 echo 'Deploying dotfiles...'
 ./scripts/dotfiles.zsh
-echo 'Done.'
+echo "Deployment of dotfiles done."
 echo ''
 
 echo 'Installing neovim package for python3 and vim plugins...'

@@ -4,8 +4,6 @@ set -e
 # must be work in files directory...
 pushd "$(cd $(dirname $0) &>/dev/null; pwd)/../files"
 
-echo "Deploying dotfiles..."
-
 stow -v -t ${HOME} home
 
 mkdir -p ${HOME}/.config
@@ -18,7 +16,6 @@ dst="${HOME}/Library/Application Support/Code/User"
 mkdir -p ${dst}
 stow -v -t ${dst} vscode
 
-echo "Deployment of dotfiles done."
 popd
 
 set +e
