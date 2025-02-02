@@ -1,4 +1,5 @@
 #!/usr/bin/env zsh
+set -e
 
 # must be work in files directory...
 pushd "$(cd $(dirname $0) &>/dev/null; pwd)/../files"
@@ -19,3 +20,5 @@ stow -v -t ${dst} vscode
 
 echo "Deployment of dotfiles done."
 popd
+
+set +e
