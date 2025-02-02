@@ -26,6 +26,11 @@ brew bundle --file ./brew/Brewfile
 echo 'Done.'
 echo ''
 
+echo 'Deploying dotfiles...'
+./scripts/dotfiles.zsh
+echo 'Done.'
+echo ''
+
 echo 'Installing neovim package for python3 and vim plugins...'
 pip3 install neovim --user
 nvim -c PlugInstall -c qa
