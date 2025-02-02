@@ -8,6 +8,9 @@ is_installed() {
 # must be work in project root...
 pushd "$(cd $(dirname $0) &>/dev/null; pwd)/.."
 
+# load env vars
+source ./files/home/.zshenv
+
 echo 'hello, macos!'
 echo 'Installing Homebrew...'
 if is_installed 'brew'; then
