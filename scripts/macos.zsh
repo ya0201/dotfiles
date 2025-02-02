@@ -8,8 +8,10 @@ is_installed() {
 # must be work in project root...
 pushd "$(cd $(dirname $0) &>/dev/null; pwd)/.."
 
-# load env vars
-source ./files/home/.zshenv
+if [ -z "$XDG_CONFIG_HOME" ]; then
+  export XDG_CONFIG_HOME="$HOME/.config"
+  mkdir -p $XDG_CONFIG_HOME
+fi
 
 echo 'hello, macos!'
 echo 'Installing Homebrew...'
