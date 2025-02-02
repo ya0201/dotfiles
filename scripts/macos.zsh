@@ -31,6 +31,9 @@ echo 'Deploying dotfiles...'
 echo 'Done.'
 echo ''
 
+echo "HOME: $HOME"
+echo "XDG_CONFIG_HOME: $XDG_CONFIG_HOME"
+
 echo 'Installing neovim package for python3 and vim plugins...'
 pip3 install pynvim --user --break-system-packages
 nvim -c PlugInstall -c qa
