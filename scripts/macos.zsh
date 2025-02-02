@@ -1,15 +1,11 @@
 #!/usr/bin/env zsh
 set -euo pipefail
 
-is_installed() {
-  which "$@" &>/dev/null
-}
-
 # must be work in project root...
 pushd "$(cd $(dirname $0) &>/dev/null; pwd)/.."
 
-export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-${HOME}/.config}
-mkdir -p $XDG_CONFIG_HOME
+# initialize
+./scripts/common-initialization.zsh
 
 echo 'hello, macos!'
 echo 'Installing Homebrew...'
@@ -33,9 +29,6 @@ echo 'Deploying dotfiles...'
 ./scripts/dotfiles.zsh
 echo 'Done.'
 echo ''
-
-echo "HOME: $HOME"
-echo "XDG_CONFIG_HOME: $XDG_CONFIG_HOME"
 
 echo 'Installing neovim package for python3 and vim plugins...'
 pip3 install pynvim --user --break-system-packages
