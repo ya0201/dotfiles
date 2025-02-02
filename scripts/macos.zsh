@@ -32,7 +32,7 @@ echo 'Done.'
 echo ''
 
 echo 'Installing neovim package for python3 and vim plugins...'
-pip3 install neovim --user
+pip3 install pynvim --user --break-system-packages
 nvim -c PlugInstall -c qa
 echo 'Done.'
 echo ''
