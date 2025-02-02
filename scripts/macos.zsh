@@ -8,10 +8,8 @@ is_installed() {
 # must be work in project root...
 pushd "$(cd $(dirname $0) &>/dev/null; pwd)/.."
 
-if [ -z "$XDG_CONFIG_HOME" ]; then
-  export XDG_CONFIG_HOME="$HOME/.config"
-  mkdir -p $XDG_CONFIG_HOME
-fi
+export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-${HOME}/.config}
+mkdir -p $XDG_CONFIG_HOME
 
 echo 'hello, macos!'
 echo 'Installing Homebrew...'
