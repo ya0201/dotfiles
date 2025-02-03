@@ -5,8 +5,6 @@ ARCH := $(shell uname)
 
 install:
 ifeq ($(ARCH),Darwin)
-	$(CURRENT_DIR)/scripts/dotfiles.zsh
-	@echo
 	$(CURRENT_DIR)/scripts/macos.zsh
 	@echo
 endif

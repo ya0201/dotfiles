@@ -1,12 +1,11 @@
 #!/usr/bin/env zsh
 set -euo pipefail
 
-is_installed() {
-  which "$@" &>/dev/null
-}
-
 # must be work in project root...
 pushd "$(cd $(dirname $0) &>/dev/null; pwd)/.."
+
+# initialize
+source ./scripts/common-initialization.zsh
 
 echo 'hello, macos!'
 echo 'Installing Homebrew...'
@@ -26,8 +25,13 @@ brew bundle --file ./brew/Brewfile
 echo 'Done.'
 echo ''
 
+echo 'Deploying dotfiles...'
+./scripts/dotfiles.zsh
+echo "Deployment of dotfiles done."
+echo ''
+
 echo 'Installing neovim package for python3 and vim plugins...'
-pip3 install neovim --user
+pip3 install pynvim --user --break-system-packages
 nvim -c PlugInstall -c qa
 echo 'Done.'
 echo ''

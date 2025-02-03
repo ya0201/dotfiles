@@ -24,6 +24,7 @@ brew 'starship'
 brew 'sheldon'
 brew 'rust'
 brew 'extract_url'
+brew 'stow'
 
 # cask
 cask 'alt-tab'
