@@ -14,7 +14,7 @@ stow -v -t ${HOME}/.ssh .ssh
 
 dst="${HOME}/Library/Application Support/Code/User"
 mkdir -p ${dst}
-stow -v -t ${dst} vscode
+stow -v --ignore=extensions -t ${dst} vscode
 
 popd
 
