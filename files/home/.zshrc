@@ -402,7 +402,7 @@ function llap() {
   return $?
 }
 function fifp() {
-  command-peco "find . -type f 2>/dev/null -not \( -path '*/.git/*' -o -path '*/node_modules/*' -o -path '*/.next/*' \)"
+  command-peco "find . -type f 2>/dev/null -not \( -path '*/.git/*' -o -path '*/node_modules/*' -o -path '*/.next/*' -o -path '*/target/debug/*' \)"
   return $?
 }
 
