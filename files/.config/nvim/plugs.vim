@@ -213,3 +213,9 @@ function! MyCmdHistoryOrRedo()
   endif
 endfunction
 nnoremap <C-r> :call MyCmdHistoryOrRedo()<CR>
+
+" copilot
+" for learning
+let g:copilot_filetypes = {
+      \ 'rust': v:false,
+      \ }
