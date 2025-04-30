@@ -311,7 +311,7 @@ check_is_installed z fzf
 if [[ $? -eq 0 ]]; then
   # search function definition
   function fzf-z-search {
-    local res=$(z | sort -rn | cut -c 12- | fzf --reverse)
+    local res=$(z | sort -rn | cut -c 12- | fzf --reverse --exact)
     if [ -n "$res" ]; then
       BUFFER+="cd $res"
       zle accept-line
@@ -336,7 +336,7 @@ fi
 check_is_installed vim fzf
 if [ $? -eq 0 ]; then
   function fifp() {
-    find . -type f 2>/dev/null -not \( -path '*/.git/*' -o -path '*/node_modules/*' -o -path '*/.next/*' -o -path '*/target/debug/*' -o -path '*/target/release/*' \) | fzf --reverse
+    find . -type f 2>/dev/null -not \( -path '*/.git/*' -o -path '*/node_modules/*' -o -path '*/.next/*' -o -path '*/target/debug/*' -o -path '*/target/release/*' \) | fzf --reverse --exact
     return $?
   }
 
@@ -383,9 +383,9 @@ vim-grep-fzf () {
   fi
 
   if check_is_installed 'rg'; then
-    local selected_line=$(rg -in --hidden -- "$@" 2>/dev/null | fzf --reverse | awk -F: '{print "-c", $2, $1}')
+    local selected_line=$(rg -in --hidden -- "$@" 2>/dev/null | fzf --reverse --exact | awk -F: '{print "-c", $2, $1}')
   else
-    local selected_line=$(grep -inr -- "$@" | fzf --reverse | awk -F: '{print "-c", $2, $1}')
+    local selected_line=$(grep -inr -- "$@" | fzf --reverse --exact | awk -F: '{print "-c", $2, $1}')
   fi
   if [[ -n $selected_line ]]; then
     vim ${=selected_line}
@@ -426,14 +426,14 @@ if [[ $? -eq 0 ]]; then
   if [[ $? -eq 0 ]]; then
     # centos/ubuntu
     history-fzf-search () {
-      BUFFER=$(history -n 1 | tac | awk '!a[$0]++' | fzf --reverse)
+      BUFFER=$(history -n 1 | tac | awk '!a[$0]++' | fzf --reverse --wrap --exact)
       CURSOR=$#BUFFER
       zle reset-prompt
     }
   else
     # freebsd family
     history-fzf-search () {
-      BUFFER=$(history -n 1 | tail -r | awk '!a[$0]++' | fzf --reverse)
+      BUFFER=$(history -n 1 | tail -r | awk '!a[$0]++' | fzf --reverse --wrap --exact)
       CURSOR=$#BUFFER
       zle reset-prompt
     }
@@ -446,7 +446,7 @@ fi
 if which ghq &> /dev/null; then
   ! which fzf &>/dev/null && return
   function fzf-ghq () {
-      local selected_dir=$(ghq list --full-path | fzf --reverse)
+      local selected_dir=$(ghq list --full-path | fzf --reverse --exact)
       if [ -n "$selected_dir" ]; then
           BUFFER="cd ${selected_dir}"
           zle accept-line
