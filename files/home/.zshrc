@@ -294,18 +294,6 @@ function command-peco() {
   eval $@ | peco
 }
 
-function lsp() {
-  command-peco ls
-  return $?
-}
-function lap() {
-  command-peco 'ls -a'
-  return $?
-}
-function llap() {
-  command-peco 'ls -al'
-  return $?
-}
 function fifp() {
   command-peco "find . -type f 2>/dev/null -not \( -path '*/.git/*' -o -path '*/node_modules/*' -o -path '*/.next/*' -o -path '*/target/debug/*' -o -path '*/target/release/*' \)"
   return $?
