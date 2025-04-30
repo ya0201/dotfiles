@@ -94,7 +94,7 @@ eval "$(starship init zsh)"
 ### Aliases ###
 alias v=vim
 alias vizr='vim ~/.zshrc'
-alias vp='vim-grep-peco'
+alias vp='vim-grep-fzf'
 ls --color >/dev/null 2>&1 && alias ls='ls --color'
 alias ll='ls -l'
 alias la='ls -a'
@@ -285,11 +285,6 @@ function check_is_installed() {
   which $@ >/dev/null 2>&1
 }
 
-function fifp() {
-  find . -type f 2>/dev/null -not \( -path '*/.git/*' -o -path '*/node_modules/*' -o -path '*/.next/*' -o -path '*/target/debug/*' -o -path '*/target/release/*' \) | peco
-  return $?
-}
-
 # tmux
 local ticc=$XDG_CACHE_HOME/.tpm_install_confirmation_cache
 if [[ ! -f $XDG_DATA_HOME/tmux/plugins/tpm/tpm && ! -f $ticc ]]; then
@@ -310,13 +305,13 @@ if [[ -f $HOME/.asdf/asdf.sh ]]; then
   export FPATH=${HOME}/.asdf/completions:${FPATH}
 fi
 
-# z wo peco tte bakusoku cd
+# z wo fzf tte bakusoku cd
 # ref: https://qiita.com/maxmellon/items/23325c22581e9187639e
-check_is_installed z peco
+check_is_installed z fzf
 if [[ $? -eq 0 ]]; then
   # search function definition
-  function peco-z-search {
-    local res=$(z | sort -rn | cut -c 12- | peco)
+  function fzf-z-search {
+    local res=$(z | sort -rn | cut -c 12- | fzf --reverse)
     if [ -n "$res" ]; then
       BUFFER+="cd $res"
       zle accept-line
@@ -326,21 +321,26 @@ if [[ $? -eq 0 ]]; then
   }
 
   # map search function to Ctrl-f
-  zle -N peco-z-search
-  bindkey '^f' peco-z-search
+  zle -N fzf-z-search
+  bindkey '^f' fzf-z-search
 else
-  function plz-install-peco-z {
-    echo "Please install peco and z"
+  function plz-install-fzf-z {
+    echo "Please install fzf and z"
     return 1
   }
-  zle -N plz-install-peco-z
-  bindkey '^f' plz-install-peco-z
+  zle -N plz-install-fzf-z
+  bindkey '^f' plz-install-fzf-z
 fi
 
-# vim with aimai search
-check_is_installed vim peco
+# vim with fuzzy finder
+check_is_installed vim fzf
 if [ $? -eq 0 ]; then
-  function vim-peco-edit {
+  function fifp() {
+    find . -type f 2>/dev/null -not \( -path '*/.git/*' -o -path '*/node_modules/*' -o -path '*/.next/*' -o -path '*/target/debug/*' -o -path '*/target/release/*' \) | fzf --reverse
+    return $?
+  }
+
+  function vim-fzf-edit {
     local selected="$(fifp)"
     if [ -n "$selected" ]; then
       BUFFER+="vim \"$selected\""
@@ -350,16 +350,16 @@ if [ $? -eq 0 ]; then
     fi
   }
 
-  # map vim-peco-edit to Ctrl-v
-  zle -N vim-peco-edit
-  bindkey '^v' vim-peco-edit
+  # map vim-fzf-edit to Ctrl-v
+  zle -N vim-fzf-edit
+  bindkey '^v' vim-fzf-edit
 else
-  function plz-install-peco-vim {
-    echo "Please install peco and vim"
+  function plz-install-fzf-vim {
+    echo "Please install fzf and vim"
     return 1
   }
-  zle -N plz-install-peco-vim
-  bindkey '^v' plz-install-peco-vim
+  zle -N plz-install-fzf-vim
+  bindkey '^v' plz-install-fzf-vim
 fi
 
 # https://postd.cc/how-to-boost-your-vim-productivity/
@@ -375,17 +375,17 @@ fancy-ctrl-z () {
 zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
 
-# ディレクトリ内ファイルをgrepで全文検索してpecoで絞り込み、該当行をvimで開く
-vim-grep-peco () {
+# ディレクトリ内ファイルをgrepで全文検索してfzfで絞り込み、該当行をvimで開く
+vim-grep-fzf () {
   if [[ $# -lt 2 ]]; then
-    echo "Usage: vim-grep-peco [word] [dir1] [dir2] ..."
+    echo "Usage: vim-grep-fzf [word] [dir1] [dir2] ..."
     return 1
   fi
 
   if check_is_installed 'rg'; then
-    local selected_line=$(rg -in --hidden -- "$@" 2>/dev/null | peco | awk -F: '{print "-c", $2, $1}')
+    local selected_line=$(rg -in --hidden -- "$@" 2>/dev/null | fzf --reverse | awk -F: '{print "-c", $2, $1}')
   else
-    local selected_line=$(grep -inr -- "$@" | peco | awk -F: '{print "-c", $2, $1}')
+    local selected_line=$(grep -inr -- "$@" | fzf --reverse | awk -F: '{print "-c", $2, $1}')
   fi
   if [[ -n $selected_line ]]; then
     vim ${=selected_line}
@@ -420,33 +420,33 @@ zle -N go-forward-in-dir-history
 bindkey '^j' go-forward-in-dir-history
 
 # history incremental search
-check_is_installed peco
+check_is_installed fzf
 if [[ $? -eq 0 ]]; then
   check_is_installed tac
   if [[ $? -eq 0 ]]; then
     # centos/ubuntu
-    history-peco-search () {
-      BUFFER=$(history -n 1 | tac | awk '!a[$0]++' | peco)
+    history-fzf-search () {
+      BUFFER=$(history -n 1 | tac | awk '!a[$0]++' | fzf --reverse)
       CURSOR=$#BUFFER
       zle reset-prompt
     }
   else
     # freebsd family
-    history-peco-search () {
-      BUFFER=$(history -n 1 | tail -r | awk '!a[$0]++' | peco)
+    history-fzf-search () {
+      BUFFER=$(history -n 1 | tail -r | awk '!a[$0]++' | fzf --reverse)
       CURSOR=$#BUFFER
       zle reset-prompt
     }
   fi
-  zle -N history-peco-search
-  bindkey '^R' history-peco-search
+  zle -N history-fzf-search
+  bindkey '^R' history-fzf-search
 fi
 
 # change directory to ghq repository
 if which ghq &> /dev/null; then
-  ! which peco &>/dev/null && return
-  function peco-ghq () {
-      local selected_dir=$(ghq list --full-path | peco --query "$LBUFFER")
+  ! which fzf &>/dev/null && return
+  function fzf-ghq () {
+      local selected_dir=$(ghq list --full-path | fzf --reverse)
       if [ -n "$selected_dir" ]; then
           BUFFER="cd ${selected_dir}"
           zle accept-line
@@ -454,8 +454,8 @@ if which ghq &> /dev/null; then
       zle clear-screen
   }
 
-  zle -N peco-ghq
-  bindkey '^G' peco-ghq
+  zle -N fzf-ghq
+  bindkey '^G' fzf-ghq
 fi
 
 # snippet to read credential from stdin without logging plain text of credential to .zsh_history
