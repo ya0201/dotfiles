@@ -285,17 +285,8 @@ function check_is_installed() {
   which $@ >/dev/null 2>&1
 }
 
-function command-peco() {
-  check_is_installed peco
-  if [ $? -eq 1 ]; then
-    return $?
-  fi
-
-  eval $@ | peco
-}
-
 function fifp() {
-  command-peco "find . -type f 2>/dev/null -not \( -path '*/.git/*' -o -path '*/node_modules/*' -o -path '*/.next/*' -o -path '*/target/debug/*' -o -path '*/target/release/*' \)"
+  find . -type f 2>/dev/null -not \( -path '*/.git/*' -o -path '*/node_modules/*' -o -path '*/.next/*' -o -path '*/target/debug/*' -o -path '*/target/release/*' \) | peco
   return $?
 }
 
@@ -399,16 +390,6 @@ vim-grep-peco () {
   if [[ -n $selected_line ]]; then
     vim ${=selected_line}
   fi
-}
-
-# MEMODIRとTILDIR用
-vigmt () {
-  if [[ $# -ne 1 ]]; then
-    echo "Usage: vigmt [word]"
-    return 1
-  fi
-
-  vim-grep-peco $1 $MEMODIR $TILDIR
 }
 
 # for moving around the directory stack by ctrl+j/ctrl+u
