@@ -10,7 +10,6 @@ brew "ghq"
 brew 'jq'
 brew 'node'
 brew 'neovim'
-brew 'peco'
 brew 'pwgen'
 brew 'python-yq'
 brew 'terraform'
