@@ -336,7 +336,7 @@ fi
 check_is_installed vim fzf
 if [ $? -eq 0 ]; then
   function fifp() {
-    find . -type f 2>/dev/null -not \( -path '*/.git/*' -o -path '*/node_modules/*' -o -path '*/.next/*' -o -path '*/target/debug/*' -o -path '*/target/release/*' \) | fzf --reverse --exact
+    find . -type f 2>/dev/null -not \( -path '*/.git/*' -o -path '*/node_modules/*' -o -path '*/.next/*' -o -path '*/target/debug/*' -o -path '*/target/release/*' -o -path '*/.DS_Store' \) | fzf --reverse --exact
     return $?
   }
 
