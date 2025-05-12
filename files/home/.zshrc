@@ -120,6 +120,9 @@ alias tf='terraform'
 alias gg='ghq get'
 alias ggrep='git grep'
 alias nl='nerdctl'
+if command -v ya0201ctl &>/dev/null; then
+  alias yl='ya0201ctl'
+fi
 
 function snk() {
   local target="$1"
