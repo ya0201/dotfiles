@@ -1,8 +1,6 @@
 cask_args appdir: '/Applications'
 
 tap 'hashicorp/tap'
-tap 'homebrew/cask'
-tap 'homebrew/core'
 
 # brew
 brew 'asdf'
