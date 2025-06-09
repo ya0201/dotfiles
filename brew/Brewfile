@@ -5,6 +5,7 @@ tap 'homebrew/cask'
 tap 'homebrew/core'
 
 # brew
+brew 'asdf'
 brew 'fzf'
 brew "ghq"
 brew 'jq'

@@ -38,6 +38,4 @@ echo ''
 
 mkdir -p ~/GoogleDrive
 
-./scripts/common-installation.zsh
-
 popd
