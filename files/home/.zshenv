@@ -64,6 +64,9 @@ mkdir -p $XDG_CACHE_HOME
 export PATH=${HOME}/.local/bin:$PATH
 mkdir -p ${HOME}/.local/bin
 
+# asdf
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+
 # memo dir
 # assumed to be used by memo (memo tool by golang)
 if [ -z "$MEMODIR" ]; then

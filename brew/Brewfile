@@ -5,6 +5,7 @@ tap 'hashicorp/tap'
 # brew
 brew 'asdf'
 brew 'fzf'
+brew 'peco'
 brew "ghq"
 brew 'jq'
 brew 'node'
