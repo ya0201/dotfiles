@@ -31,11 +31,14 @@ echo "Deployment of dotfiles done."
 echo ''
 
 echo 'Installing neovim package for python3 and vim plugins...'
-pip3 install pynvim --user
+pip3 install --user pynvim
 nvim -c PlugInstall -c qa
 echo 'Done.'
 echo ''
 
 mkdir -p ~/GoogleDrive
+
+# git config
+git config --global push.autoSetupRemote true
 
 popd
