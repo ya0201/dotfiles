@@ -195,10 +195,11 @@ fi
 
 ## pyenv
 if [[ -d "${PYENV_ROOT}" ]]; then
-  _py_funcs=('pyenv' 'python' 'python3')
-  for f in ${_py_funcs[@]}; do
-    eval "function $f () { unset -f $f; eval \"\$(pyenv init -)\"; $f \"\$@\" }"
-  done
+  # _py_funcs=('pyenv' 'python' 'python3')
+  # for f in ${_py_funcs[@]}; do
+  #   eval "function $f () { unset -f $f; eval \"\$(pyenv init -)\"; $f \"\$@\" }"
+  # done
+  eval "$(pyenv init - zsh)"
 fi
 
 if [[ $(uname) == 'Darwin' ]]; then

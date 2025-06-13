@@ -30,8 +30,18 @@ echo 'Deploying dotfiles...'
 echo "Deployment of dotfiles done."
 echo ''
 
+echo 'Creating python virtual env...'
+export PYENV_ROOT="${HOME}/.pyenv"
+export PATH=${PYENV_ROOT}/bin:$PATH
+eval "$(pyenv init - zsh)"
+pyenv_version='3.13.4'
+pyenv install ${pyenv_version}
+pyenv global ${pyenv_version}
+echo ''
+
 echo 'Installing neovim package for python3 and vim plugins...'
-PIP_BREAK_SYSTEM_PACKAGES=1 pip3 install --user pynvim
+# PIP_BREAK_SYSTEM_PACKAGES=1 pip3 install --user pynvim
+pip3 install pynvim
 nvim -c PlugInstall -c qa
 echo 'Done.'
 echo ''
