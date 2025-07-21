@@ -40,3 +40,4 @@ cask 'drawio'
 
 # vscode
 vscode "MS-CEINTL.vscode-language-pack-ja"
+vscode "marp-team.marp-vscode"
