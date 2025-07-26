@@ -1,4 +1,7 @@
 {
     "workbench.colorTheme": "Nier: Automata Light",
-    "workbench.startupEditor": "none"
+    "workbench.startupEditor": "none",
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    }
 }
