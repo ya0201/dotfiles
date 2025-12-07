@@ -120,6 +120,7 @@ alias snk='ssh -o StrictHostKeyChecking=no'
 alias gg='ghq get'
 alias ggrep='git grep'
 alias nl='nerdctl'
+alias ca='cargo'
 if command -v ya0201ctl &>/dev/null; then
   alias yl='ya0201ctl'
 fi
