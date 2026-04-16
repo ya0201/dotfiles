@@ -166,16 +166,14 @@ function gpsuo() {
 
 # mainかmasterがある方に自動でswitchする関数
 gshm() {
-    # ローカルブランチからmainまたはmasterを探す
-    local target=$(git branch --format="%(refname:short)" | grep -E '^main$|^master$' | head -n 1)
-
-    if [ -n "$target" ]; then
-        echo "Switching to $target..."
-        git switch "$target"
-    else
-        echo "Error: 'main' or 'master' branch not found in this repository."
-        return 1
-    fi
+    local b
+    for b in master main; do
+        if git show-ref --verify --quiet "refs/heads/$b"; then
+            git switch "$b"
+            return
+        fi
+    done
+    echo "Error: Neither main nor master branch exists."
 }
 
 alias gcompute='gcloud compute'
