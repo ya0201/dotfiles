@@ -121,6 +121,14 @@ alias gg='ghq get'
 alias ggrep='git grep'
 alias nl='nerdctl'
 alias ca='cargo'
+if command -v trash &>/dev/null; then
+  rm() {
+    while [[ "$1" == -* ]]; do
+      shift
+    done
+    trash "$@"
+  }
+fi
 if command -v ya0201ctl &>/dev/null; then
   alias yl='ya0201ctl'
 fi
